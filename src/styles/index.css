@@ -1,0 +1,26 @@
+/* src/styles/index.css */
+@import './pages/intro.css';
+@import './components/animations.css';
+
+/* Add any global styles here */
+:root {
+  --color-text: #fff;
+  --color-bg: #000;
+  --color-link: #fff;
+  --color-link-hover: #ac1122;
+  --color-info: #ac1122;
+  --color-title: #ffffff;
+  --color-subtitle: #fff;
+  --color-subtitle-bg: #4d1f96;
+}
+
+body {
+  margin: 0;
+  font-family: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
