@@ -50,12 +50,12 @@ const Intro = () => {
   };
 
   return (
-    <main>
-      <div ref={contentRef} className="content">
-        {/* Galaxy Animation Canvas */}
+    <main className="intro-container">
+      <div className="galaxy-container">
         <GalaxyAnimation />
-        
-        {/* Clickable Content */}
+      </div>
+
+      <div ref={contentRef} className="content">
         <div id="clickable-area" className="clickable-content" onClick={handleClick}>
           <div className="content__inner">
             <h2 className="content__title">Sivakumar's Voyage</h2>

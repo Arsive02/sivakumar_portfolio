@@ -1,4 +1,4 @@
-/* Base styles and CSS Reset */
+/* Base styles and CSS Reset from your previous version */
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}
 audio,canvas,video{display:inline-block;}
 audio:not([controls]){display:none;height:0;}
@@ -80,119 +80,47 @@ body {
   opacity: 1;
 }
 
-/* Links */
-a {
-  text-decoration: none;
-  color: var(--color-link);
-  outline: none;
-}
-
-a:hover,
-a:focus {
-  color: var(--color-link-hover);
-  outline: none;
-}
-
 /* Main Layout */
-main {
-  position: relative;
-  width: 100%;
-}
-
-.content {
-  position: relative;
-  display: grid;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin: 0 auto;
-  min-height: 100vh;
-}
-
-/* Content Inner */
-.content__inner {
-  grid-area: 1 / 1 / 1 / 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  z-index: 2;
-}
-
-/* Title Styles */
-.content__title {
-  font-family: 'Oxanium';
-  -webkit-text-stroke: 1px var(--color-title);
-  text-shadow: 
-    2px 2px 0 var(--color-bg), 
-    -2px -2px 0 var(--color-bg), 
-    2px -2px 0 var(--color-bg), 
-    -2px 2px 0 var(--color-bg);
-  font-size: 5vw;
-  font-weight: normal;
-  color: var(--color-title);
-  text-align: center;
-  margin: 0;
-  pointer-events: none;
-  z-index: 2;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-}
-
-.content__subtitle {
-  font-family: 'Oxanium';
-  font-size: 1.50em;
-  background: var(--color-subtitle-bg);
-  color: var(--color-subtitle);
-  padding: 0.45em 0.5em;
-  line-height: 1;
-  margin: 0;
-  letter-spacing: 0.5em;
-  text-indent: 0.5em;
-  font-weight: bold;
-  text-transform: uppercase;
-  z-index: 2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-/* Click Effects */
-.clickable-content {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 100;
-}
-
-.clickable-content:hover .content__title {
-  transform: scale(1.02);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-.clickable-content:hover .content__subtitle {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(172, 17, 34, 0.3);
-}
-
-/* Ripple Effect */
-.ripple {
-  position: fixed;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.4);
-  transform: scale(0);
-  animation: ripple 0.8s linear;
-  pointer-events: none;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(4);
-    opacity: 0;
+.intro-container {
+	position: fixed; 
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	top: 0;
+	left: 0;
   }
+
+.galaxy-container {
+position: fixed; 
+top: 0;
+left: 0;
+width: 100%;
+height: 100vh;
+z-index: 1;
 }
 
-/* Mouse Follow Effect */
+.scene {
+  position: absolute;
+}
+
+.scene--full {
+  width: 100%;
+  height: 100vh;
+}
+
+/* Content Styles */
+.content {
+	position: fixed; 
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+  }
+
 .content::after {
   content: '';
   position: fixed;
@@ -212,14 +140,189 @@ main {
   opacity: 1;
 }
 
-/* Canvas Styles */
-.scene {
-  position: absolute;
+.content__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem;
+  z-index: 2;
 }
 
-.scene--full {
+/* Title Styles */
+.content__title {
+	font-family: 'Oxanium';
+	-webkit-text-stroke: 1px var(--color-title);
+	text-shadow: 
+	  2px 2px 0 var(--color-bg), 
+	  -2px -2px 0 var(--color-bg), 
+	  2px -2px 0 var(--color-bg), 
+	  -2px 2px 0 var(--color-bg);
+	font-size: 5vw;
+	font-weight: normal;
+	color: var(--color-title);
+	text-align: center;
+	margin: 0;
+	pointer-events: none;
+	z-index: 2;
+	transition: transform 0.3s ease, text-shadow 0.3s ease;
+	background: transparent; 
+  }
+
+  .content__subtitle {
+	font-family: 'Oxanium';
+	font-size: 1.50em;
+	background: var(--color-subtitle-bg);
+	color: var(--color-subtitle);
+	padding: 0.45em 0.5em;
+	line-height: 1;
+	margin: 0;
+	letter-spacing: 0.5em;
+	text-indent: 0.5em;
+	font-weight: bold;
+	text-transform: uppercase;
+	z-index: 2;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+/* Click Effects */
+.clickable-content {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 100;
+}
+
+.clickable-content:hover .content__title {
+  transform: scale(1.02);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.clickable-content:hover .content__subtitle {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(172, 17, 34, 0.3);
+}
+
+/* Transition Effects */
+.content.transitioning {
+  transform: scale(1.1);
+  opacity: 0;
+}
+
+.content__title.transitioning,
+.content__subtitle.transitioning {
+  opacity: 0;
+}
+
+/* Space Warp Effect */
+.space-warp {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.3s;
+  perspective: 1000px;
+}
+
+.space-warp.active {
+  opacity: 1;
+}
+
+.warp-tunnel {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-radial-gradient(
+    circle at 50% 50%,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(59, 130, 246, 0.2) 10%,
+    rgba(147, 51, 234, 0.3) 20%,
+    transparent 30%
+  );
+  transform-origin: center center;
+  animation: warpEffect 3.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: starfieldAnimation 2.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+/* Flash Effect */
+.flash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flash.active {
+  animation: flashEffect 0.5s ease-out forwards;
+}
+
+/* Ripple Effect */
+.ripple {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple 0.8s linear;
+  pointer-events: none;
+}
+
+/* Animations */
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes warpEffect {
+  0% {
+    transform: scale(1) translateZ(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(20) translateZ(2000px);
+    opacity: 0;
+  }
+}
+
+@keyframes starfieldAnimation {
+  0% {
+    transform: translateZ(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateZ(2000px);
+    opacity: 0;
+  }
+}
+
+@keyframes flashEffect {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0; }
 }
 
 /* Responsive Styles */

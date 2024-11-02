@@ -32,13 +32,13 @@ const GalaxyAnimation = () => {
       antialias: true
     });
     renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
-    renderer.setSize(width*2, height*2);
+    renderer.setSize(width, height);
     renderer.setClearColor(0x000000);
 
     // Scene setup
     const scene = new THREE.Scene();
     const raycaster = new THREE.Raycaster();
-    raycaster.params.Points.threshold = 6;
+    raycaster.params.Points.threshold = 6; 
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 2000);
@@ -53,7 +53,7 @@ const GalaxyAnimation = () => {
     const dotTexture = loader.load("/img/dotTexture.png");
 
     // Dots setup
-    const dotsAmount = 2500;
+    const dotsAmount = 3000;
     const dotsGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(dotsAmount * 3);
     const sizes = new Float32Array(dotsAmount);
@@ -118,7 +118,7 @@ const GalaxyAnimation = () => {
 
     function moveDot(vector: CustomVector3, index: number) {
       const tempVector = vector.clone() as CustomVector3;
-      tempVector.multiplyScalar((Math.random() - 0.5) * 0.2 + 1);
+      tempVector.multiplyScalar((Math.random() - 0.5) * 0.4 + 1);
       
       gsap.to(vector, {
         x: tempVector.x,
@@ -225,8 +225,8 @@ const GalaxyAnimation = () => {
 
     function mouseOut(index: number) {
       gsap.to(sizes, {
-        [index]: 5,
-        duration: 0.4,
+        [index]: 3,
+        duration: 0.2,
         ease: "power2.out",
         onUpdate: () => {
           dotsGeometry.attributes.size.needsUpdate = true;
@@ -282,7 +282,15 @@ const GalaxyAnimation = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      style={{ width: '100%', height: '100%' }}
+      className="galaxy-canvas"
+      style={{ 
+        position: 'fixed', 
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 1
+      }} 
     />
   );
 };
