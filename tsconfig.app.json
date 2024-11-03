@@ -22,5 +22,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "public/js"]
+  "include": ["src", "public/js", "tailwind.conig.js"]
 }

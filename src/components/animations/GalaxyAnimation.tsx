@@ -10,8 +10,17 @@ interface CustomVector3 extends THREE.Vector3 {
   tl?: gsap.core.Timeline;
 }
 
-const GalaxyAnimation = () => {
+interface GalaxyAnimationProps {
+  isTransitioning?: boolean;
+}
+
+const GalaxyAnimation: React.FC<GalaxyAnimationProps> = ({ isTransitioning = false }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const materialRef = useRef<THREE.ShaderMaterial | null>(null);
+  const segmentsMaterialRef = useRef<THREE.LineBasicMaterial | null>(null);
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -20,29 +29,33 @@ const GalaxyAnimation = () => {
     const width = canvas.offsetWidth;
     const height = canvas.offsetHeight;
 
-    // Colors setup
+    // Colors setup with increased brightness
     const colors = [
-      new THREE.Color(0xffe5b4), // Light yellow
-      new THREE.Color(0xffffff)  // White
+      new THREE.Color(0xffd700), // Light golden yellow
+      new THREE.Color(0xffffff)  // Brighter white
     ];
 
     // Renderer setup
     const renderer = new THREE.WebGLRenderer({
       canvas: canvas,
-      antialias: true
+      antialias: true,
+      alpha: true
     });
     renderer.setPixelRatio(window.devicePixelRatio > 1 ? 2 : 1);
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000);
+    rendererRef.current = renderer;
 
     // Scene setup
     const scene = new THREE.Scene();
+    sceneRef.current = scene;
     const raycaster = new THREE.Raycaster();
-    raycaster.params.Points.threshold = 6; 
+    raycaster.params.Points.threshold = 6;
 
     // Camera setup
     const camera = new THREE.PerspectiveCamera(50, width / height, 0.1, 2000);
     camera.position.set(0, 0, 350);
+    cameraRef.current = camera;
 
     // Galaxy group
     const galaxy = new THREE.Group();
@@ -52,15 +65,55 @@ const GalaxyAnimation = () => {
     const loader = new THREE.TextureLoader();
     const dotTexture = loader.load("/img/dotTexture.png");
 
-    // Dots setup
-    const dotsAmount = 3000;
+    // Enhanced shader material
+    const shaderMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        pointTexture: { value: dotTexture },
+        uAlpha: { value: 1.0 }  // Add uniform for opacity control
+      },
+      vertexShader: `
+        attribute float size;
+        attribute vec3 color;
+        varying vec3 vColor;
+        
+        void main() {
+          vColor = color;
+          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+          gl_PointSize = size * (300.0 / -mvPosition.z); // Increased size multiplier
+          gl_Position = projectionMatrix * mvPosition;
+        }
+      `,
+      fragmentShader: `
+        uniform sampler2D pointTexture;
+        uniform float uAlpha;
+        varying vec3 vColor;
+
+        void main() {
+          vec4 textureColor = texture2D(pointTexture, gl_PointCoord);
+          if (textureColor.a < 0.3) discard;
+          gl_FragColor = vec4(vColor, uAlpha) * textureColor;
+          
+          // Add bloom effect
+          float brightness = dot(gl_FragColor.rgb, vec3(0.299, 0.587, 0.114));
+          if (brightness > 0.7) {
+            gl_FragColor.rgb *= 1.2;
+          }
+        }
+      `,
+      transparent: true,
+      depthWrite: false
+    });
+    materialRef.current = shaderMaterial;
+
+    // Dots setup with increased amount
+    const dotsAmount = 3000; // 
     const dotsGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(dotsAmount * 3);
     const sizes = new Float32Array(dotsAmount);
     const colorsAttribute = new Float32Array(dotsAmount * 3);
     const dots: CustomVector3[] = [];
 
-    // Create dots
+    // Create dots with modified distribution
     for (let i = 0; i < dotsAmount; i++) {
       const vector = new THREE.Vector3() as CustomVector3;
 
@@ -83,38 +136,8 @@ const GalaxyAnimation = () => {
       dots.push(vector);
       vector.toArray(positions, i * 3);
       colors[vector.color].toArray(colorsAttribute, i * 3);
-      sizes[i] = 5;
+      sizes[i] = Math.random() * 4 + 4; // Varied sizes
     }
-
-    // Shader material with corrected uniform name
-    const shaderMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        pointTexture: { value: dotTexture } 
-      },
-      vertexShader: `
-        attribute float size;
-        attribute vec3 color;
-        varying vec3 vColor;
-
-        void main() {
-          vColor = color;
-          vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-          gl_PointSize = size * (250.0 / -mvPosition.z);
-          gl_Position = projectionMatrix * mvPosition;
-        }
-      `,
-      fragmentShader: `
-        uniform sampler2D pointTexture;  
-        varying vec3 vColor;
-
-        void main() {
-          vec4 textureColor = texture2D(pointTexture, gl_PointCoord);
-          if (textureColor.a < 0.3) discard;
-          gl_FragColor = vec4(vColor, 1.0) * textureColor;
-        }
-      `,
-      transparent: true
-    });
 
     function moveDot(vector: CustomVector3, index: number) {
       const tempVector = vector.clone() as CustomVector3;
@@ -146,7 +169,7 @@ const GalaxyAnimation = () => {
     const wrap = new THREE.Points(dotsGeometry, shaderMaterial);
     scene.add(wrap);
 
-    // Create white segments
+    // Create white segments with enhanced brightness
     const segmentsGeom = new THREE.BufferGeometry();
     const segmentPositions: number[] = [];
     const segmentColors: number[] = [];
@@ -173,8 +196,10 @@ const GalaxyAnimation = () => {
     const segmentsMat = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: 0.3
+      opacity: 0.3,
+      blending: THREE.AdditiveBlending
     });
+    segmentsMaterialRef.current = segmentsMat;
 
     const segments = new THREE.LineSegments(segmentsGeom, segmentsMat);
     galaxy.add(segments);
@@ -262,37 +287,79 @@ const GalaxyAnimation = () => {
 
     // Animation loop
     function animate() {
-      animationFrameId = requestAnimationFrame(animate);
-      render();
-    }
-    animate();
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("resize", onResize);
-      cancelAnimationFrame(animationFrameId);
-      scene.clear();
-      renderer.dispose();
-      gsap.killTweensOf(dots);
-      gsap.killTweensOf(sizes);
+        animationFrameId = requestAnimationFrame(animate);
+        render();
+      }
+      animate();
+  
+      // Cleanup
+      return () => {
+        window.removeEventListener("mousemove", onMouseMove);
+        window.removeEventListener("resize", onResize);
+        cancelAnimationFrame(animationFrameId);
+        scene.clear();
+        renderer.dispose();
+        gsap.killTweensOf(dots);
+        gsap.killTweensOf(sizes);
+      };
+    }, []);
+  
+    useEffect(() => {
+        if (isTransitioning && cameraRef.current) {
+          const tl = gsap.timeline();
+          
+          // Zoom camera with enhanced effect
+          tl.to(cameraRef.current.position, {
+            z: -1000,
+            duration: 2,
+            ease: "power2.in",
+            onUpdate: () => {
+              if (cameraRef.current) {
+                cameraRef.current.updateProjectionMatrix();
+              }
+            }
+          });
+    
+        //   // Optional: Add slight rotation for more dynamic effect
+        //   tl.to(cameraRef.current.rotation, {
+        //     y: Math.PI * 0.5,
+        //     duration: 2,
+        //     ease: "power2.in",
+        //   }, 0);
+    
+          // Maintain material opacity and enhance brightness during transition
+          if (materialRef.current) {
+            gsap.to(materialRef.current.uniforms.uAlpha, {
+              value: 1.8, // Slightly increase brightness during transition
+              duration: 2,
+              ease: "power2.in"
+            });
+          }
+    
+          if (segmentsMaterialRef.current) {
+            gsap.to(segmentsMaterialRef.current, {
+              opacity: 0.5, // Increase line opacity during transition
+              duration: 2,
+              ease: "power2.in"
+            });
+          }
+        }
+      }, [isTransitioning]);
+    
+      return (
+        <canvas 
+          ref={canvasRef} 
+          className="galaxy-canvas"
+          style={{ 
+            position: 'fixed', 
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 1
+          }} 
+        />
+      );
     };
-  }, []);
-
-  return (
-    <canvas 
-      ref={canvasRef} 
-      className="galaxy-canvas"
-      style={{ 
-        position: 'fixed', 
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 1
-      }} 
-    />
-  );
-};
-
-export default GalaxyAnimation;
+    
+    export default GalaxyAnimation;
