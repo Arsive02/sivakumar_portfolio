@@ -44,7 +44,7 @@ table{border-collapse:collapse;border-spacing:0;}
   --color-link: #fff;
   --color-link-hover: #ac1122;
   --color-info: #ac1122;
-  --color-title: #ffffff;
+  --color-title: #000000;
   --color-subtitle: #fff;
   --color-subtitle-bg: #4d1f96;
 }
