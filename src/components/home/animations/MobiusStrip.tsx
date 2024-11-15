@@ -66,20 +66,16 @@ const MobiusStrip = () => {
     const mobiusStrip = new THREE.Mesh(geometry, material);
     scene.add(mobiusStrip);
 
-    // Position camera
     camera.position.z = 8;
 
-    // Animation
     let frameId: number;
     const animate = (time: number) => {
       frameId = requestAnimationFrame(animate);
       
-      mobiusStrip.rotation.x += 0.01;
-      mobiusStrip.rotation.y += 0.02;
+      mobiusStrip.rotation.x += 0.005;
+      mobiusStrip.rotation.y += 0.005;
       
       material.uniforms.time.value = time * 0.001;
-      
-      // Smooth hover transition
       material.uniforms.hover.value += (isHovered ? 1 : -1) * 0.1;
       material.uniforms.hover.value = Math.max(0, Math.min(1, material.uniforms.hover.value));
       
@@ -87,14 +83,12 @@ const MobiusStrip = () => {
     };
     animate(0);
 
-    // Handle resize
     const handleResize = () => {
       renderer.setSize(32, 32);
       camera.updateProjectionMatrix();
     };
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(frameId);
@@ -109,31 +103,41 @@ const MobiusStrip = () => {
 
   const handleTimeTravelClick = () => {
     setIsTimeTravel(true);
-    
-    // Navigate after rocket launch animation
     setTimeout(() => {
       navigate('/');
-    }, 2000); // 2 seconds for the rocket launch
+    }, 2000);
   };
 
   return (
-    <div className="relative">
-      <div 
-        ref={mountRef}
-        className="w-8 h-8 cursor-pointer transition-transform duration-300 hover:scale-110" 
-        style={{ 
-          filter: `drop-shadow(0 0 8px rgba(59, 130, 246, ${isHovered ? '0.8' : '0.5'}))`
-        }}
-        onClick={handleTimeTravelClick}
-        onMouseEnter={() => {
-          setIsHovered(true);
-          setShowTooltip(true);
-        }}
-        onMouseLeave={() => {
-          setIsHovered(false);
-          setShowTooltip(false);
-        }}
-      />
+    // Increased hoverable area with padding
+    <div className="relative group p-4">
+      {/* Hover detection area */}
+      <div className="absolute inset-0 cursor-pointer" />
+      
+      {/* Mobius strip container */}
+      <div className="relative">
+        <div 
+          ref={mountRef}
+          className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" 
+          style={{ 
+            filter: `drop-shadow(0 0 8px rgba(59, 130, 246, ${isHovered ? '0.8' : '0.5'}))`
+          }}
+          onClick={handleTimeTravelClick}
+          onMouseEnter={() => {
+            setIsHovered(true);
+            setShowTooltip(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            setShowTooltip(false);
+          }}
+        />
+        
+        {/* Glow effect */}
+        <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+      
+      {/* Tooltip positioned below */}
       <MobiusTooltip isVisible={showTooltip} />
     </div>
   );

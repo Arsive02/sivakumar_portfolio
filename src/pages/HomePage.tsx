@@ -1,80 +1,12 @@
-import { useState } from 'react';
-import { Code, Mail, Menu, X, LineChart, Brain } from 'lucide-react';
-import MobiusStrip from '../components/home/animations/MobiusStrip';
-import "../styles/home/components/mobius.css";
+import { Code, Mail, LineChart, Brain } from 'lucide-react';
 import LossLandscapeGame from '../components/home/animations/LossLandscape';
+import Navigation from '../components/home/Navigation';
 
 const HomePage = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('about');
-
-  // Navigation items
-  const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' }
-  ];
-
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Navigation Bar */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo/Name */}
-            <div className="flex items-center space-x-2">
-              <MobiusStrip />
-              <span className="text-xl font-semibold">Sivakumar's portfolio</span>
-            </div>
-
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {navItems.map(item => (
-                <button
-                  key={item.id}
-                  onClick={() => setActiveSection(item.id)}
-                  className={`px-3 py-2 rounded-lg transition-all ${
-                    activeSection === item.id 
-                    ? 'bg-blue-500/20 text-blue-400' 
-                    : 'hover:bg-gray-800'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden p-2 rounded-lg hover:bg-gray-800"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X /> : <Menu />}
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Mobile Navigation Menu */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/95 md:hidden pt-16">
-          <div className="flex flex-col items-center space-y-4 p-4">
-            {navItems.map(item => (
-              <button
-                key={item.id}
-                onClick={() => {
-                  setActiveSection(item.id);
-                  setIsMenuOpen(false);
-                }}
-                className="w-full text-center py-3 rounded-lg hover:bg-gray-800"
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
+      <Navigation />
 
       {/* Main Content */}
       <main className="pt-20 pb-12">
