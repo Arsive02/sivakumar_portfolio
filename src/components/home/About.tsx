@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Github, Linkedin, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Github, Linkedin } from 'lucide-react';
 import LossLandscapeGame from './animations/LossLandscape';
 import "../../styles/home/components/lossfunction.css";
 
 const TextSection = () => {
-  const [isVisible, setIsVisible] = useState(true);
   const skills = [
     'Deep Learning', 
     'Natural Language Processing', 
@@ -13,6 +12,20 @@ const TextSection = () => {
   ];
   
   const [particles, setParticles] = useState<{ id: number; x: number; y: number; size: number; duration: number; }[]>([]);
+
+  particles.forEach(particle => {
+    const particleEl = document.createElement('div');
+    particleEl.className = 'particle';
+    particleEl.style.left = `${particle.x}%`;
+    particleEl.style.top = `${particle.y}%`;
+    particleEl.style.width = `${particle.size}px`;
+    particleEl.style.height = `${particle.size}px`;
+    particleEl.style.animationDuration = `${particle.duration}s`;
+    document.body.appendChild(particleEl);
+    setTimeout(() => {
+      particleEl.remove();
+    }, particle.duration * 1000);
+  });
 
   // Particle effect
   useEffect(() => {

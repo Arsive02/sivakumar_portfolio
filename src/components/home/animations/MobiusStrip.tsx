@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as THREE from 'three';
 import MobiusTooltip from './MobiusToolTip';
@@ -9,6 +9,8 @@ const MobiusStrip = () => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isTimeTravel, setIsTimeTravel] = useState(false);
+
+  isTimeTravel && setTimeout(() => setIsTimeTravel(false), 2000);
   
   useEffect(() => {
     if (!mountRef.current) return;
