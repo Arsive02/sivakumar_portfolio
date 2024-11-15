@@ -3,7 +3,6 @@
 @import 'tailwindcss/utilities';
 
 @import './pages/intro.css';
-/* @import './pages/home.css'; */
 @import './components/animations.css';
 
 /* Root variables and global styles */

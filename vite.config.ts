@@ -18,6 +18,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
+      'three': 'three',
+        'three/addons/': 'three/examples/jsm/',
     },
   },
   build: {
