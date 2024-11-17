@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { RotateCcw } from 'lucide-react';
+import profilePic from "../../../assets/images/pro_pic.jpg";
 
 const LossLandscape = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const ballRef = useRef<THREE.Mesh | null>(null);
+  const velocityRef = useRef<THREE.Vector3>(new THREE.Vector3());
+  const [resetKey, setResetKey] = useState(0); // Added for forcing re-render
   const [isMinimumReached, setIsMinimumReached] = useState(false);
   const [currentLoss, setCurrentLoss] = useState(0);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -16,32 +21,67 @@ const LossLandscape = () => {
   });
 
   const handleReset = () => {
+    // Reset all game state
     setIsMinimumReached(false);
-    window.location.reload(); // Simple reset for now
+    setCurrentLoss(0);
+    velocityRef.current.set(0, 0, 0);
+    
+    // Reset ball position if it exists
+    if (ballRef.current) {
+      const startX = (Math.random() - 0.5) * 10;
+      const startZ = (Math.random() - 0.5) * 10;
+      const startY = computeHeight(startX, startZ) + 0.5;
+      ballRef.current.position.set(startX, startY, startZ);
+    }
+
+    // Reset camera position
+    if (cameraRef.current) {
+      controlsRef.current.cameraRotation = 0;
+      controlsRef.current.cameraHeight = 15;
+      const radius = 20;
+      cameraRef.current.position.set(
+        Math.cos(controlsRef.current.cameraRotation) * radius,
+        controlsRef.current.cameraHeight,
+        Math.sin(controlsRef.current.cameraRotation) * radius
+      );
+      cameraRef.current.lookAt(0, 0, 0);
+    }
+
+    // Force re-render
+    setResetKey(prev => prev + 1);
   };
 
-  useEffect(() => {
-    if (!canvasRef.current) return;
+    // Helper function for height computation
+    const computeHeight = (x: number, z: number): number => {
+      const gaussian = -2 * Math.exp(-(x*x + z*z) * 0.1);
+      const periodic = Math.sin(x * 0.5) * Math.cos(z * 0.5);
+      const radial = Math.cos(Math.sqrt(x*x + z*z)) * 0.5;
+      return gaussian + periodic + radial;
+    };
 
-    // Scene Setup
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x000000);
-    const width = canvasRef.current.clientWidth;
-    const height = canvasRef.current.clientHeight;
-
-    // Camera Setup
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.set(15, 15, 15);
-    camera.lookAt(0, 0, 0);
-    cameraRef.current = camera;
-
-    // Renderer Setup
-    const renderer = new THREE.WebGLRenderer({
-      canvas: canvasRef.current,
-      antialias: true
-    });
-    renderer.setSize(width, height);
-    renderer.setPixelRatio(window.devicePixelRatio);
+    useEffect(() => {
+      if (!canvasRef.current) return;
+  
+      // Scene Setup
+      const scene = new THREE.Scene();
+      sceneRef.current = scene;
+      scene.background = new THREE.Color(0x000000);
+      const width = canvasRef.current.clientWidth;
+      const height = canvasRef.current.clientHeight;
+  
+      // Camera Setup
+      const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+      camera.position.set(15, 15, 15);
+      camera.lookAt(0, 0, 0);
+      cameraRef.current = camera;
+  
+      // Renderer Setup
+      const renderer = new THREE.WebGLRenderer({
+        canvas: canvasRef.current,
+        antialias: true
+      });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(window.devicePixelRatio);
 
     // Loss Function with more defined minimum
     const computeHeight = (x: number, z: number): number => {
@@ -87,16 +127,17 @@ const LossLandscape = () => {
     landscape.rotation.x = -Math.PI / 2;
     scene.add(landscape);
 
-    // Ball Setup with outline
-    const ballGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-    const ballMaterial = new THREE.MeshStandardMaterial({
-      color: 0xf59e0b,
-      metalness: 0.7,
-      roughness: 0.3,
-      emissive: 0x666666,
-      emissiveIntensity: 0.2
-    });
-    const ball = new THREE.Mesh(ballGeometry, ballMaterial);
+     // Ball Setup with outline
+     const ballGeometry = new THREE.SphereGeometry(0.5, 32, 32);
+     const ballMaterial = new THREE.MeshStandardMaterial({
+       color: 0xf59e0b,
+       metalness: 0.7,
+       roughness: 0.3,
+       emissive: 0x666666,
+       emissiveIntensity: 0.2
+     });
+     const ball = new THREE.Mesh(ballGeometry, ballMaterial);
+     ballRef.current = ball;
 
     // Ball outline
     const outlineMaterial = new THREE.MeshBasicMaterial({
@@ -260,7 +301,7 @@ const LossLandscape = () => {
     };
 
     const animationId = requestAnimationFrame(animate);
-
+    
     // Event listeners
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
@@ -288,121 +329,47 @@ const LossLandscape = () => {
       window.removeEventListener('resize', handleResize);
       cancelAnimationFrame(animationId);
     };
-  }, []);
+  }, [resetKey])
 
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '100%', 
-      position: 'relative',
-      background: '#000000'
-    }}>
+    <div className="relative w-full h-full bg-black" key={resetKey}>
       {!isMinimumReached ? (
         <canvas
           ref={canvasRef}
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'block',
-            cursor: 'grab'
-          }}
+          className="w-full h-full block cursor-grab"
         />
       ) : (
-        <div style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: '#000000'
-        }}>
-          <img 
-            src="/api/placeholder/400/400"
-            alt="Profile"
-            style={{
-              width: '300px',
-              height: '300px',
-              borderRadius: '50%',
-              border: '4px solid #3b82f6',
-              boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)'
-            }}
-          />
+        <div className="absolute top-5 left-5 bg-black/70 text-white p-4 rounded-lg 
+                font-sans text-sm">
+          Arrow keys or WASD to move • Click and drag to rotate camera
+          <div className="mt-2 text-blue-500">
+            Current Loss: {currentLoss.toFixed(3)}
+          </div>
+        </div>
+            )}
+            
+            {/* Minimum Reached Display */}
+            {isMinimumReached && (
+        <div className="w-full h-full flex items-center justify-center bg-black">
+         <img 
+          src={profilePic}
+          alt="Profile"
+          className="w-[300px] h-[300px] rounded-full border-4 border-blue-500 
+                  shadow-[0_0_20px_rgba(59,130,246,0.5)]"
+        />
         </div>
       )}
-      
-      {/* Controls Info */}
-      <div style={{
-        position: 'absolute',
-        top: '20px',
-        left: '20px',
-        background: 'rgba(0,0,0,0.7)',
-        color: 'white',
-        padding: '15px',
-        borderRadius: '8px',
-        fontFamily: 'Arial, sans-serif',
-        fontSize: '14px'
-      }}>
-        Arrow keys or WASD to move • Click and drag to rotate camera
-        <div style={{ marginTop: '8px', color: '#3b82f6' }}>
-          Current Loss: {currentLoss.toFixed(3)}
-        </div>
-      </div>
 
       {/* Reset Button */}
       <button
         onClick={handleReset}
-        style={{
-          position: 'absolute',
-          top: '20px',
-          right: '20px',
-          background: 'rgba(0,0,0,0.7)',
-          color: 'white',
-          padding: '12px',
-          borderRadius: '50%',
-          border: '1px solid rgba(59, 130, 246, 0.3)',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          transition: 'all 0.3s ease'
-        }}
-        onMouseOver={e => {
-          e.currentTarget.style.background = 'rgba(59, 130, 246, 0.2)';
-          e.currentTarget.style.transform = 'rotate(180deg)';
-        }}
-        onMouseOut={e => {
-          e.currentTarget.style.background = 'rgba(0,0,0,0.7)';
-          e.currentTarget.style.transform = 'rotate(0deg)';
-        }}
+        className="absolute top-5 right-5 bg-black/70 text-white p-3 rounded-full
+                 border border-blue-500/30 cursor-pointer flex items-center justify-center
+                 transition-all duration-300 hover:bg-blue-500/20 hover:rotate-180"
+        aria-label="Reset Game"
       >
         <RotateCcw size={24} />
       </button>
-
-      {isMinimumReached && (
-        <div style={{
-          position: 'absolute',
-          bottom: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          background: 'rgba(0,0,0,0.9)',
-          color: 'white',
-          padding: '20px',
-          borderRadius: '10px',
-          textAlign: 'center',
-          fontFamily: 'Arial, sans-serif'
-        }}>
-          <h3 style={{ 
-            color: '#3b82f6', 
-            margin: '0 0 10px 0',
-            fontSize: '24px' 
-          }}>
-            Global Minimum Found!
-          </h3>
-          <p style={{ margin: 0 }}>
-            Loss Value: {currentLoss.toFixed(6)}
-          </p>
-        </div>
-      )}
     </div>
   );
 };

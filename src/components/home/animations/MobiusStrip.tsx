@@ -109,35 +109,45 @@ const MobiusStrip = () => {
   };
 
   return (
-    // Increased hoverable area with padding
-    <div className="relative group p-4">
-      {/* Hover detection area */}
-      <div className="absolute inset-0 cursor-pointer" />
-      
-      {/* Mobius strip container */}
-      <div className="relative">
+    <div className="relative inline-block">
+      {/* Interactive area wrapper */}
+      <button
+        className="relative p-2 rounded-full group focus:outline-none"
+        onClick={handleTimeTravelClick}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          setShowTooltip(true);
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          setShowTooltip(false);
+        }}
+      >
+        {/* Mobius strip container */}
         <div 
           ref={mountRef}
           className="w-8 h-8 transition-transform duration-300 group-hover:scale-110" 
           style={{ 
             filter: `drop-shadow(0 0 8px rgba(59, 130, 246, ${isHovered ? '0.8' : '0.5'}))`
           }}
-          onClick={handleTimeTravelClick}
-          onMouseEnter={() => {
-            setIsHovered(true);
-            setShowTooltip(true);
-          }}
-          onMouseLeave={() => {
-            setIsHovered(false);
-            setShowTooltip(false);
-          }}
         />
         
         {/* Glow effect */}
-        <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      </div>
-      
-      {/* Tooltip positioned below */}
+        <div 
+          className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl opacity-0 
+                     group-hover:opacity-100 transition-opacity duration-300"
+          aria-hidden="true"
+        />
+
+        {/* Hover ring */}
+        <div 
+          className="absolute inset-0 rounded-full border border-blue-500/0 
+                     group-hover:border-blue-500/20 transition-colors duration-300"
+          aria-hidden="true"
+        />
+      </button>
+
+      {/* Tooltip */}
       <MobiusTooltip isVisible={showTooltip} />
     </div>
   );
