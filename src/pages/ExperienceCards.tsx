@@ -176,7 +176,7 @@ const DocumentButton = ({
         aria-label={`View ${label}`}
       >
         <Eye className={`w-4 h-4 transition-transform duration-300 ${isHovered ? 'scale-110' : ''}`} />
-        <span className="text-sm font-medium">View</span>
+        <span className="text-sm font-medium">View *under_development</span>
       </button>
 
       <button
@@ -196,7 +196,7 @@ const DocumentButton = ({
         <Download 
           className={`w-4 h-4 transition-transform duration-300 ${isHovered ? 'translate-y-0.5' : ''}`} 
         />
-        <span className="text-sm font-medium">Download</span>
+        <span className="text-sm font-medium">Download *under_development</span>
       </button>
     </div>
   );
@@ -329,7 +329,7 @@ export const InternCard = ({ experience }: { experience: Experience }) => {
             </ul>
             
             <div className="mt-4 flex justify-end gap-2">
-            <DocumentButton 
+            {/* <DocumentButton 
             href={experience.certificate}
             filename={`${experience.company}_Intern_Certificate.pdf`}
             label="Certificate"
@@ -340,7 +340,7 @@ export const InternCard = ({ experience }: { experience: Experience }) => {
                 });
                 setPdfViewerOpen(true);
             }}
-            />
+            /> */}
             {experience.report && (
             <DocumentButton 
                 href={experience.report}

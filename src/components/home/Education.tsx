@@ -107,31 +107,41 @@ const EducationSection = () => {
     {
       degree: "Master of Science in Data Science",
       institution: "University of Colorado Boulder",
-      period: "Aug 2024 - Current",
+      period: "Aug 2024 - May 2026",
       location: "Boulder, Colorado",
-      gpa: "In Progress",
+      gpa: "4.00/4.00",
       courses: [
-        "Machine Learning",
-        "Deep Learning",
-        "Natural Language Processing",
+        "Advanced Statistics and Probability",
+        "Applied Deep Learning",
         "Computer Vision",
-        "Big Data Analytics",
-        "Statistical Methods"
+        "Cybersecurity in Data Science",
+        "Data Mining",
+        "Ethics in Data Science",
+        "Machine Learning",
+        "Natural Language Processing",
       ]
     },
     {
-      degree: "Bachelor of Engineering",
+      degree: "Bachelor of Engineering in Electronics and Communication",
       institution: "Sri Sai Ram Engineering College",
       period: "Aug 2018 – Jun 2022",
       location: "Chennai, India",
       gpa: "3.65/4.00",
       courses: [
-        "Artificial Intelligence",
-        "Digital Signal Processing",
-        "Data Structures",
-        "Computer Networks",
+        "Cloud Computing",
+        "Control Systems",
+        "Data Structures and Algorithms",
+        "Digital Communication",
         "Digital Electronics",
-        "Embedded Systems"
+        "Digital Signal Processing",
+        "Electronic Devices and Circuits Analysis",
+        "Embedded Systems",
+        "Engineering Physics and Chemistry",
+        "Machine learning Techniques",
+        "Mathematics - Linear Algebra, Partial Differential Equations, Probability and Statistics",
+        "Medical Electronics",
+        "Robotics",
+        "Wireless Communication"
       ]
     }
   ];
