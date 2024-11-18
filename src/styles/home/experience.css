@@ -1,0 +1,548 @@
+/* Experience Timeline Animations */
+@keyframes neural-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    50% {
+      transform: scale(1.5);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Timeline Container */
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
+  }
+  
+  /* Center Line */
+  .timeline-line {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(180deg, 
+      rgba(59, 130, 246, 0.2) 0%,
+      rgba(59, 130, 246, 0.5) 50%,
+      rgba(59, 130, 246, 0.2) 100%
+    );
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  
+  .timeline-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #3b82f6, transparent);
+    transform: translateX(-50%);
+    filter: blur(4px);
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  /* Timeline Items */
+  .timeline-item {
+    position: relative;
+    margin-bottom: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Left and Right positioning */
+  .timeline-left .timeline-content {
+    margin-right: 50%;
+    padding-right: 40px;
+    text-align: left;
+  }
+  
+  .timeline-right .timeline-content {
+    margin-left: 50%;
+    padding-left: 40px;
+    text-align: left;
+  }
+
+  .timeline-sides {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+    z-index: 2;
+  }
+
+  .timeline-side {
+    width: 50%;
+    padding: 20px;
+  }
+
+  .timeline-side-left {
+    text-align: justify;
+  }
+  
+  .timeline-side-right {
+    text-align: justify;
+  } 
+  
+  
+  /* Timeline Node */
+  .timeline-node {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(17, 24, 39, 0.8);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+  }
+  
+  .timeline-icon {
+    width: 20px;
+    height: 20px;
+    color: #3b82f6;
+    animation: gentle-pulse 2s infinite;
+    position: relative; /* Changed from absolute */
+  }
+
+  @keyframes gentle-pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  
+  /* Experience Card */
+  .experience-card {
+    background: rgba(17, 24, 39, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    width: calc(100% - 40px);
+    z-index: 2;
+  }
+  
+  .experience-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.4);
+    background: rgba(17, 24, 39, 0.7);
+  }
+
+  /* Photo Container Styles */
+  .photo-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.photo-container .relative {
+  position: relative;
+  z-index: 2;
+}
+
+.photo-container img {
+  position: relative;
+  z-index: 2;
+  transform-origin: center;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.photo-container .absolute {
+  z-index: 3;
+  pointer-events: none;
+}
+
+.timeline-side-left .photo-container {
+  justify-content: flex-end;
+}
+
+.timeline-side-right .photo-container {
+  justify-content: flex-start;
+}
+
+.timeline-side-left .photo-container {
+  justify-content: flex-end;
+}
+
+.timeline-side-right .photo-container {
+  justify-content: flex-start;
+}
+  
+  /* Card Header */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .period {
+    padding: 6px 12px;
+    background: rgba(17, 24, 39, 0.5);
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: #9CA3AF;
+  }
+  
+  /* Highlight List */
+  .highlight-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .highlight-list li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .timeline-left .highlight-list li {
+    flex-direction: row-reverse;
+  }
+  
+  .highlight-arrow {
+    width: 20px;
+    height: 20px;
+    color: #3b82f6;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  
+  .timeline-left .highlight-arrow {
+    transform: rotate(180deg);
+  }
+  
+  /* Card Glow Effect */
+  .card-glow {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, 
+      rgba(59, 130, 246, 0) 0%,
+      rgba(59, 130, 246, 0.1) 50%,
+      rgba(59, 130, 246, 0) 100%
+    );
+    border-radius: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+  }
+  
+  .experience-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  .photo-container .group {
+  position: relative;
+  display: inline-block;
+  z-index: 2;
+}
+
+  .photo-container .group img {
+    transition: transform 0.3s ease;
+  }
+
+  .photo-container .group:hover img {
+    transform: scale(1.05);
+  }
+
+  .photo-container .group > div:not(img) {
+    pointer-events: none;
+  }
+
+  .photo-container .group > div {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: 0.5rem;
+    pointer-events: none;
+  }
+  
+  /* Education section styles */
+  .education-grid {
+    display: grid;
+    gap: 2rem;
+    position: relative;
+  }
+  
+  .education-card {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+  
+  .education-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .education-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center,
+      rgba(147, 51, 234, 0.1) 0%,
+      transparent 70%
+    );
+    border-radius: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .education-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Neural connection lines */
+  .neural-connection {
+    position: absolute;
+    background: linear-gradient(90deg, 
+      rgba(59, 130, 246, 0.2),
+      rgba(147, 51, 234, 0.2)
+    );
+    height: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .education-card:hover .neural-connection {
+    opacity: 1;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+  .timeline-line {
+    left: 30px;
+  }
+
+  .timeline-node {
+    left: 30px;
+    transform: translateX(-50%);
+  }
+
+  .timeline-node:hover {
+    border-color: rgba(59, 130, 246, 0.8);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    transform: translateX(-50%) scale(1.1);
+  }
+  
+  
+  .timeline-node svg {
+    transition: all 0.3s ease;
+  }
+
+  .timeline-node:hover svg {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 8px currentColor);
+  }
+
+  .timeline-node::before,
+.timeline-node::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(59, 130, 246, 0) 0%,
+    rgba(59, 130, 246, 0.3) 50%,
+    rgba(59, 130, 246, 0) 100%
+  );
+  top: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.timeline-node::before {
+  right: 100%;
+  transform: translateX(-10px);
+}
+
+.timeline-node::after {
+  left: 100%;
+  transform: translateX(10px);
+}
+
+.timeline-node:hover::before,
+.timeline-node:hover::after {
+  opacity: 1;
+}
+
+  .timeline-sides {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .timeline-side {
+    width: 100%;
+    padding: 0 0 0 60px;
+    text-align: left;
+  }
+
+  .timeline-side-left,
+  .timeline-side-right {
+    text-align: justify;
+  }
+
+  .photo-container {
+    justify-content: flex-start;
+  }
+
+/* Download Button Styles */
+.experience-card .download-button {
+  position: relative;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+
+.experience-card .download-button:hover {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Download Icon Animation */
+.experience-card .download-button:hover svg {
+  animation: gentle-bounce 0.5s ease infinite;
+}
+
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+  .timeline-side-left .photo-container,
+  .timeline-side-right .photo-container {
+    justify-content: flex-start;
+  }
+}
+  
+  /* Animation delays for staggered entrance */
+  .experience-card:nth-child(1) { animation-delay: 0.1s; }
+  .experience-card:nth-child(2) { animation-delay: 0.2s; }
+  .experience-card:nth-child(3) { animation-delay: 0.3s; }
+  
+  /* Utility classes */
+  .gradient-bg {
+    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #6366f1);
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-neural-pulse {
+    animation: neural-pulse 2s infinite;
+  }
+  
+  /* Add smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      opacity: 0.7;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 30px;
+    }
+  
+    .timeline-item {
+      justify-content: flex-start;
+    }
+  
+    .timeline-left .timeline-content,
+    .timeline-right .timeline-content {
+      margin: 0;
+      padding-left: 60px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .timeline-left .highlight-list li {
+      flex-direction: row;
+    }
+  
+    .timeline-left .highlight-arrow {
+      transform: none;
+    }
+    
+    .timeline-node {
+      left: 30px;
+      width: 36px;
+      height: 36px;
+    }
+    
+    .timeline-icon {
+      width: 18px;
+      height: 18px;
+    }
+  }

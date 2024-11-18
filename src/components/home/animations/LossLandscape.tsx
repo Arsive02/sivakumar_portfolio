@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { RotateCcw } from 'lucide-react';
-import profilePic from "../../../assets/images/pro_pic.jpg";
+import profilePic from "../../../assets/images/ProfilePic_6-Photoroom.png";
 
 const LossLandscape = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -9,6 +9,7 @@ const LossLandscape = () => {
   const ballRef = useRef<THREE.Mesh | null>(null);
   const velocityRef = useRef<THREE.Vector3>(new THREE.Vector3());
   const [resetKey, setResetKey] = useState(0); // Added for forcing re-render
+  const [isSkipped, setIsSkipped] = useState(false);
   const [isMinimumReached, setIsMinimumReached] = useState(false);
   const [currentLoss, setCurrentLoss] = useState(0);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
@@ -20,10 +21,16 @@ const LossLandscape = () => {
     cameraHeight: 15
   });
 
+  const handleSkip = () => {
+    setIsMinimumReached(true);
+    setIsSkipped(true);
+  };
+
   const handleReset = () => {
     // Reset all game state
     setIsMinimumReached(false);
     setCurrentLoss(0);
+    setIsSkipped(false);
     velocityRef.current.set(0, 0, 0);
     
     // Reset ball position if it exists
@@ -331,46 +338,79 @@ const LossLandscape = () => {
     };
   }, [resetKey])
 
+  
   return (
-    <div className="relative w-full h-full bg-black" key={resetKey}>
-      {!isMinimumReached ? (
-        <canvas
-          ref={canvasRef}
-          className="w-full h-full block cursor-grab"
-        />
-      ) : (
-        <div className="absolute top-5 left-5 bg-black/70 text-white p-4 rounded-lg 
-                font-sans text-sm">
-          Arrow keys or WASD to move • Click and drag to rotate camera
-          <div className="mt-2 text-blue-500">
+    <div className="relative w-full h-full bg-black overflow-hidden" key={resetKey}>
+    {/* Instructions Panel */}
+    {!isMinimumReached && (
+      <div className="absolute z-10 top-5 left-1/2 -translate-x-1/2 bg-black/80 
+                    text-white p-4 rounded-lg font-sans text-sm border border-blue-500/20
+                    backdrop-blur-sm shadow-lg">
+        <div className="flex flex-col items-center space-y-2">
+          <h4 className="text-blue-400 font-semibold">Controls</h4>
+          <p className="text-center">
+            Arrow keys or WASD to move • Click and drag to rotate camera
+          </p>
+          <div className="text-blue-500 font-medium">
             Current Loss: {currentLoss.toFixed(3)}
           </div>
         </div>
-            )}
-            
-            {/* Minimum Reached Display */}
-            {isMinimumReached && (
-        <div className="w-full h-full flex items-center justify-center bg-black">
-         <img 
-          src={profilePic}
-          alt="Profile"
-          className="w-[300px] h-[300px] rounded-full border-4 border-blue-500 
-                  shadow-[0_0_20px_rgba(59,130,246,0.5)]"
-        />
-        </div>
-      )}
+      </div>
+    )}
 
-      {/* Reset Button */}
+    {/* Skip Game Button - Only show when game is active */}
+    {!isMinimumReached && (
+      <button
+        onClick={handleSkip}
+        className="absolute top-5 right-1 bg-black/80 text-white px-2 py-2 rounded-lg
+                 border border-purple-500/30 cursor-pointer flex items-center justify-center
+                 transition-all duration-300 hover:bg-purple-500/20 hover:scale-105
+                 backdrop-blur-sm shadow-lg"
+      >
+        Skip Game
+      </button>
+    )}
+
+    {/* Game Canvas */}
+    {!isMinimumReached ? (
+      <canvas
+        ref={canvasRef}
+        className="w-full h-full block cursor-grab"
+      />
+    ) : (
+      /* Profile Display when minimum is reached or game is skipped */
+      <div className="w-full h-full flex items-center justify-center bg-black p-8">
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 
+                       rounded-lg blur-lg group-hover:blur-xl transition-all duration-300" />
+          <div className="relative bg-black p-1 rounded-lg">
+            <img 
+              src={profilePic}
+              alt="Profile"
+              className="w-[400px] h-[400px] object-cover rounded-lg
+                       transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div className="absolute inset-0 border-2 border-blue-500/50 rounded-lg" />
+        </div>
+      </div>
+    )}
+
+    {/* Reset Button - Only show when game is complete or skipped */}
+    {isMinimumReached && (
       <button
         onClick={handleReset}
-        className="absolute top-5 right-5 bg-black/70 text-white p-3 rounded-full
+        className="absolute bottom-5 right-5 bg-black/80 text-white p-3 rounded-lg
                  border border-blue-500/30 cursor-pointer flex items-center justify-center
-                 transition-all duration-300 hover:bg-blue-500/20 hover:rotate-180"
+                 transition-all duration-300 hover:bg-blue-500/20 hover:scale-105
+                 backdrop-blur-sm shadow-lg"
         aria-label="Reset Game"
       >
-        <RotateCcw size={24} />
+        <RotateCcw className="mr-2" size={20} />
+        <span>Reset</span>
       </button>
-    </div>
+    )}
+  </div>
   );
 };
 

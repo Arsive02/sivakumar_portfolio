@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {Mail, Menu, X, LineChart, Brain, Terminal } from 'lucide-react';
+import {Mail, Menu, X, LineChart, User, Terminal, Cpu, GraduationCapIcon, Trophy, Book } from 'lucide-react';
 import MobiusStrip from './animations/MobiusStrip';
 import "../../styles/home/components/nav.css";
 import "../../styles/home/components/mobius.css";
@@ -10,10 +10,13 @@ const Navigation = () => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const navItems = [
-    { id: 'about', label: 'About', icon: Brain },
+    { id: 'about', label: 'About', icon: User },
     { id: 'experience', label: 'Experience', icon: LineChart },
+    { id: 'education', label: 'Education', icon: GraduationCapIcon },
+    { id: 'skills', label: 'Skills', icon: Cpu },
     { id: 'projects', label: 'Projects', icon: Terminal },
-    { id: 'contact', label: 'Contact', icon: Mail }
+    { id: 'achievements', label: 'Achievements', icon: Trophy },
+    { id: 'resources', label: 'Resources', icon: Book}
   ];
 
   const scrollToSection = (sectionId: string) => {
@@ -64,9 +67,13 @@ const Navigation = () => {
                     Sivakumar
                   </span>
                   <div className="absolute -bottom-5 left-0 right-0 flex items-center justify-center space-x-1 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="text-xs text-gray-400">[</span>
-                    <span className="text-xs text-blue-400 whitespace-nowrap">data_scientist</span>
-                    <span className="text-xs text-gray-400">]</span>
+                    {hoverIndex !== null && (
+                      <>
+                      <span className="text-xs text-gray-400">[</span>
+                      <span className="text-xs text-blue-400 whitespace-nowrap">data_scientist</span>
+                      <span className="text-xs text-gray-400">]</span>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

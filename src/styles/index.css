@@ -4,6 +4,8 @@
 
 @import './pages/intro.css';
 @import './components/animations.css';
+@import './home/components/skills.css';
+@import './home/experience.css';
 
 /* Root variables and global styles */
 :root {
