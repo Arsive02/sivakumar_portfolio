@@ -4,7 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  publicDir: 'public',
   css: {
+    
     modules: {
       localsConvention: 'camelCase',
       scopeBehaviour: 'local',
@@ -24,9 +26,11 @@ export default defineConfig({
   },
   build: {
     assetsDir: 'assets',
+    outDir: 'dist',
     rollupOptions: {
       output: {
         manualChunks: {
+          'three-vendor': ['three'],
           three: ['three'],
           gsap: ['gsap'],
         },
