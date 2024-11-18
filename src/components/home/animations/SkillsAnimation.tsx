@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { Activity } from 'lucide-react';
 
 interface SkillsAnimationProps {
   skills: string[];

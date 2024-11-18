@@ -9,7 +9,7 @@ const LossLandscape = () => {
   const ballRef = useRef<THREE.Mesh | null>(null);
   const velocityRef = useRef<THREE.Vector3>(new THREE.Vector3());
   const [resetKey, setResetKey] = useState(0); // Added for forcing re-render
-  const [isSkipped, setIsSkipped] = useState(false);
+  const [, setIsSkipped] = useState(false);
   const [isMinimumReached, setIsMinimumReached] = useState(false);
   const [currentLoss, setCurrentLoss] = useState(0);
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);

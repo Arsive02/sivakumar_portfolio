@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {Mail, Menu, X, LineChart, User, Terminal, Cpu, GraduationCapIcon, Trophy, Book } from 'lucide-react';
+import {Menu, X, LineChart, User, Terminal, Cpu, GraduationCapIcon, Trophy, Book } from 'lucide-react';
 import MobiusStrip from './animations/MobiusStrip';
 import "../../styles/home/components/nav.css";
 import "../../styles/home/components/mobius.css";

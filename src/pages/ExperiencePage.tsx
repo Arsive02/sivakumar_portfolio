@@ -1,4 +1,4 @@
-import { Binary, Brain, Network, Cpu } from 'lucide-react';
+import { Brain, Network, Cpu } from 'lucide-react';
 import { DataScientistCard, TraineeCard, InternCard } from './ExperienceCards';
 import { useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
