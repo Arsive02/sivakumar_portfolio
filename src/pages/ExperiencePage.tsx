@@ -7,7 +7,14 @@ import { ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function RoverModel() {
-  const { scene } = useGLTF("/models/Rover.glb")
+  const { scene } = useGLTF("/models/Rover.glb");
+
+  if (!scene) {
+    console.error("Error loading Rover model");
+    console.log("Model path:", process.env.PUBLIC_URL + '/models/Rover.glb');
+    return null;
+  }
+
   return <primitive object={scene} scale={2} position={[0, -1, 0]} />;
 }
 
