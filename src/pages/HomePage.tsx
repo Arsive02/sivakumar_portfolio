@@ -1,4 +1,4 @@
-import { BookIcon, Cpu, GraduationCapIcon, Medal, Terminal } from 'lucide-react';
+import { BookIcon, Cpu, Gamepad2Icon, GraduationCapIcon, Medal, Terminal } from 'lucide-react';
 import TextSection from '../components/home/About';
 import Navigation from '../components/home/Navigation';
 import ExperienceSection from '../components/home/ExperienceSection';
@@ -6,6 +6,8 @@ import EducationSection from '../components/home/Education';
 import SkillsOrbit from '../components/skills/SkillsGraph';
 import "../styles/home/homepage.css";
 import "../styles/home/education.css";
+import FeaturedProjects from '../components/projects/FeaturedProjects';
+import "../styles/home/components/nav.css";
 
 const HomePage = () => {
   return (
@@ -35,15 +37,17 @@ const HomePage = () => {
           <ExperienceSection />
         </section>
 
-        {/* Education Section */}
-        <section id="education" className="section bg-gradient-to-b from-black via-gray-900 to-black py-12">
+        {/* Projects Section */}
+        <section id="projects" className="section bg-gradient-to-b from-black via-gray-900/50 to-black py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="section-heading mb-8">
-              <GraduationCapIcon className="w-8 h-8 text-blue-500" />
-              <h2 className="section-title">Education</h2>
+              <Terminal className="w-8 h-8 text-blue-500" />
+              <h2 className="section-title">Projects</h2>
             </div>
-            <EducationSection />
+            <FeaturedProjects />
           </div>
+          
+          <div className="decorative-blur w-80 h-80 bg-purple-500/5 absolute left-0 top-1/2" />
         </section>
 
         {/* Skills Section */}
@@ -60,20 +64,15 @@ const HomePage = () => {
           <div className="decorative-blur w-64 h-64 bg-blue-500/5 absolute top-1/4 right-1/4" />
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="section bg-gradient-to-b from-black via-gray-900/50 to-black py-12">
+        {/* Education Section */}
+        <section id="education" className="section bg-gradient-to-b from-black via-gray-900 to-black py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="section-heading mb-8">
-              <Terminal className="w-8 h-8 text-blue-500" />
-              <h2 className="section-title">Projects</h2>
+              <GraduationCapIcon className="w-8 h-8 text-blue-500" />
+              <h2 className="section-title">Education</h2>
             </div>
-            {/* Projects content will go here */}
-            <div className="projects-content">
-              <p>To be updated</p>
-            </div>
+            <EducationSection />
           </div>
-          
-          <div className="decorative-blur w-80 h-80 bg-purple-500/5 absolute left-0 top-1/2" />
         </section>
 
         {/* Achievements Section */}
@@ -90,6 +89,22 @@ const HomePage = () => {
           </div>
           
           <div className="decorative-blur w-80 h-80 bg-blue-500/5 absolute right-0 bottom-0" />
+        </section>
+
+        {/* Hobbies/Extras Section */}
+        <section id="hobbies" className="section bg-gradient-to-b from-black via-gray-900 to-black py-12">
+            <div className="max-w-7xl mx-auto px-4">
+              <div className="section-heading mb-8">
+                <Gamepad2Icon className="w-8 h-8 text-blue-500" />
+                <h2 className="section-title">Hobbies & Extras</h2>
+            </div>
+            {/* Hobbies content will go here */}
+            <div className="hobbies-content">
+              <p>To be updated</p>
+            </div>
+          </div>
+          
+          <div className="decorative-blur w-80 h-80 bg-purple-500/5 absolute left-0 bottom-0" />
         </section>
 
         {/* Resources Section */}
