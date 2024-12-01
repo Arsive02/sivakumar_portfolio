@@ -1,25 +1,47 @@
 import { Brain, Network, Cpu } from 'lucide-react';
 import { DataScientistCard, TraineeCard, InternCard } from './ExperienceCards';
-import { useRef } from 'react';
+import { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Stage } from '@react-three/drei';
+import { OrbitControls, useGLTF, Environment } from '@react-three/drei';
 import { ChevronLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-function RoverModel() {
-  const { scene } = useGLTF("/models/Rover.glb");
+// Bloch Sphere Component
+function BlochSphere() {
+  const { scene } = useGLTF("/models/bloch_sphere.glb");
+  return <primitive object={scene} scale={1} position={[0, 0, 0]} />;
+}
 
-  if (!scene) {
-    console.error("Error loading Rover model");
-    console.log("Model path:", process.env.PUBLIC_URL + '/models/Rover.glb');
-    return null;
-  }
-
-  return <primitive object={scene} scale={2} position={[0, -1, 0]} />;
+// Scene Component
+function Scene() {
+  return (
+    <Suspense fallback={null}>
+      <ambientLight intensity={0.5} />
+      <spotLight 
+        position={[10, 10, 10]} 
+        angle={0.15} 
+        penumbra={1} 
+        intensity={1}
+        castShadow
+      />
+      <pointLight position={[-10, -10, -10]} intensity={0.5} />
+      
+      <BlochSphere />
+      <Environment preset="city" />
+      
+      <OrbitControls 
+        enableZoom={false}
+        autoRotate
+        autoRotateSpeed={1.5}
+        minPolarAngle={Math.PI / 3}
+        maxPolarAngle={Math.PI / 2}
+      />
+    </Suspense>
+  );
 }
 
 const ExperienceHeader = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const canvasRef = useRef(null);
 
   return (
     <div className="relative min-h-[60vh] bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
@@ -43,9 +65,10 @@ const ExperienceHeader = () => {
             Journey Through Time
           </h1>
           <p className="text-lg text-gray-300 mb-6 leading-relaxed text-justify">
-            Exploring the landscape of AI and Machine Learning, one milestone at a time. 
-            Like a rover traversing uncharted territory, each experience has been a step 
-            into new frontiers of technology and innovation.
+            Embarking on a voyage through the realms of AI and Machine Learning, each experience 
+            is a beacon illuminating the path of innovation. Just as a rover navigates the enigmatic 
+            terrains of distant planets, my journey is a relentless pursuit of knowledge, pushing the 
+            boundaries of what's possible in the ever-evolving landscape of technology.
           </p>
           <div className="flex gap-4">
             <div className="flex flex-col">
@@ -67,21 +90,7 @@ const ExperienceHeader = () => {
               camera={{ position: [5, 2, 5], fov: 45 }}
               style={{ background: 'transparent' }}
             >
-              <ambientLight intensity={0.5} />
-              <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-              <pointLight position={[-10, -10, -10]} />
-              
-              <Stage environment="city" intensity={0.6}>
-                <RoverModel />
-              </Stage>
-              
-              <OrbitControls 
-                enableZoom={false}
-                autoRotate
-                autoRotateSpeed={1.5}
-                minPolarAngle={Math.PI / 3}
-                maxPolarAngle={Math.PI / 2}
-              />
+              <Scene />
             </Canvas>
           </div>
         </div>

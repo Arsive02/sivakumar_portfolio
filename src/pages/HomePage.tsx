@@ -84,23 +84,23 @@ const HomePage = () => {
             </div>
             {/* Achievements content will go here */}
             <div className="achievements-content">
-              <p>To be updated</p>
+              <p>Certifications, Medals and stuff (kaggle)</p>
             </div>
           </div>
           
           <div className="decorative-blur w-80 h-80 bg-blue-500/5 absolute right-0 bottom-0" />
         </section>
 
-        {/* Hobbies/Extras Section */}
+        {/* Personal */}
         <section id="hobbies" className="section bg-gradient-to-b from-black via-gray-900 to-black py-12">
             <div className="max-w-7xl mx-auto px-4">
               <div className="section-heading mb-8">
                 <Gamepad2Icon className="w-8 h-8 text-blue-500" />
-                <h2 className="section-title">Hobbies & Extras</h2>
+                <h2 className="section-title"></h2>
             </div>
             {/* Hobbies content will go here */}
             <div className="hobbies-content">
-              <p>To be updated</p>
+              <p>Lectures, Japanese, Gym, Chess, Flute, social links</p>
             </div>
           </div>
           
@@ -114,9 +114,9 @@ const HomePage = () => {
               <BookIcon className="w-8 h-8 text-blue-500" />
               <h2 className="section-title">Resources</h2>
             </div>
-            {/* Contact content will go here */}
+            {/* Resources content will go here */}
             <div className="resources-content">
-              <p>To be updated</p>
+              <p>Quantum Computing, Math reading</p>
             </div>
           </div>
           

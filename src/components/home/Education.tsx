@@ -138,7 +138,7 @@ const EducationSection = () => {
         "Embedded Systems",
         "Engineering Physics and Chemistry",
         "Machine learning Techniques",
-        "Mathematics - Linear Algebra, Partial Differential Equations, Probability and Statistics",
+        "Mathematics - Linear Algebra, Calculus, Probability and Statistics",
         "Medical Electronics",
         "Robotics",
         "Wireless Communication"
@@ -191,9 +191,9 @@ const EducationSection = () => {
                 </div>
 
                 {/* Courses */}
-                <div className="lg:w-1/2 p-8 rounded-xl backdrop-blur-sm">
+                <div className="lg:w-1/2 p-6 rounded-xl backdrop-blur-sm">
                   <h4 className="text-lg font-medium text-purple-400 mb-4">Key Courses</h4>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-3">
                     {edu.courses.map((course, courseIndex) => (
                       <div
                         key={courseIndex}

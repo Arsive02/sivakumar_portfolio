@@ -177,40 +177,40 @@ const GraphNodeNav: React.FC<GraphNodeNavProps> = ({ onSelect }) => {
       id: 'projects',
       label: 'Projects',
       icon: Layers,
-      color: 'from-blue-400 to-cyan-400'
+      color: 'from-blue-500 to-indigo-500'  // Deep blue to rich indigo
     },
     {
       id: 'skills',
       label: 'Skills',
       icon: Cpu,
-      color: 'from-cyan-400 to-teal-400'
+      color: 'from-indigo-500 to-purple-500'  // Rich indigo to deep purple
     },
     {
       id: 'education',
       label: 'Education',
       icon: GraduationCapIcon,
-      color: 'from-teal-400 to-green-400'
+      color: 'from-purple-500 to-violet-500'  // Deep purple to vibrant violet
     },
     {
       id: 'achievements',
       label: 'Achievements',
       icon: Trophy,
-      color: 'from-green-400 to-emerald-400'
+      color: 'from-violet-500 to-fuchsia-500'  // Vibrant violet to bright fuchsia
     },
     {
       id: 'hobbies',
       label: 'Hobbies',
       icon: GamepadIcon,
-      color: 'from-emerald-400 to-blue-400'
+      color: 'from-fuchsia-500 to-blue-500'  // Bright fuchsia back to deep blue
     },
     {
       id: 'resources',
       label: 'Resources',
       icon: Book,
-      color: 'from-blue-400 to-indigo-400'
+      color: 'from-blue-500 to-indigo-500'  // Completing the cycle
     }
   ];
-
+  
   return (
     <div className="relative">
       {/* Trigger Button */}
