@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { RotateCcw } from 'lucide-react';
-import profilePic from "../../../assets/images/ProfilePic_6-Photoroom.png";
+import profilePic from "/img/ProfilePic_6-Photoroom.png";
 
 const LossLandscape = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

@@ -149,8 +149,8 @@ const ExperiencePage = () => {
       title: "Data Scientist",
       company: "ZOHO",
       period: "May 2022 – July 2024",
-      photo: "/src/assets/images/zoho_ds.jpg",
-      certificate: "/src/assets/certificates/zoho_ds_certificate.pdf",
+      photo: "/img/zoho_ds.jpg",
+      certificate: "/certificates/zoho_ds_certificate.pdf",
       highlights: [
         "Advanced RAG Architecture: Developed and scaled an advanced Retrieval-Augmented Generation (RAG) system using VLLM, supporting millions of users with multi-modal input processing and reduced hallucinations.",
         "Implemented diverse AI solutions, including customer assistance prediction, phishing detection with 90% accuracy, generative AI tasks like FAQ Generation, reply mail generation, and summary generation.",
@@ -163,7 +163,7 @@ const ExperiencePage = () => {
       company: "ZOHO",
       period: "Sep 2021 – Apr 2022",
       photo: "/api/placeholder/400/400",
-      certificate: "/src/assets/certificates/zoho_trainee_certificate.pdf", // Add certificate path
+      certificate: "/certificates/zoho_trainee_certificate.pdf", // Add certificate path
       highlights: [
         "Foundational NLP research ranging from rule-based methodologies to implementation of seq-to-seq architectures.",
         "Developed a Java-based e-commerce web application with RESTful APIs using JAX-RS."
@@ -174,8 +174,8 @@ const ExperiencePage = () => {
       company: "SIEMENS",
       period: "Apr 2021",
       photo: "/api/placeholder/400/400",
-      certificate: "/src/assets/certificates/siemens_certificate.pdf", // Add certificate path
-      report: "src/assets/certificates/SIEMENS_INTERNSHIP_REPORT.pdf", // Add report path
+      certificate: "/certificates/siemens_certificate.pdf", // Add certificate path
+      report: "/certificates/SIEMENS_INTERNSHIP_REPORT.pdf", // Add report path
       highlights: [
         "Gained hands-on experience with advanced medical imaging systems, principle components of PET-CT, MRI, and CT."
       ]

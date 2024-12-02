@@ -121,42 +121,44 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
     };
   }, []);
 
+ 
   return (
     <div className="space-y-4">
       <p className="text-lg font-light tracking-wide text-gray-400/80">
         Specializing in:
       </p>
       
-      <div ref={containerRef} className="relative min-h-[120px] p-4">
+      <div ref={containerRef} className="relative min-h-[120px] p-4 perspective-1000">
         <div className="relative z-10 flex flex-wrap gap-4">
           {skills.map((skill, index) => (
             <div
               key={skill}
               onMouseEnter={() => setActiveSkill(index)}
               onMouseLeave={() => setActiveSkill(-1)}
-              className={`
-                group relative
-                transition-all duration-500 ease-out
-                cursor-pointer overflow-hidden
-              `}
+              className="group relative transition-all duration-500 ease-out cursor-pointer preserve-3d"
             >
-              {/* Main container with pseudo-3D effect */}
+              {/* Main container with enhanced 3D effect */}
               <div className={`
                 relative px-5 py-2 rounded-lg
-                bg-gradient-to-br from-gray-900/80 to-gray-800/80
-                backdrop-blur-md
-                transform perspective-1000
-                transition-all duration-500
-                border border-white/[0.08]
-                ${activeSkill === index ? 'scale-110 -translate-y-1' : 'hover:scale-105'}
+                backdrop-blur-xl
+                transform-gpu preserve-3d
+                transition-all duration-500 ease-out
+                border border-zinc-800/10
+                shadow-lg shadow-black/20
+                ${activeSkill === index ? 
+                  'scale-110 rotate-y-12 translate-z-8 bg-gradient-to-br from-blue-900/90 to-indigo-500/90 border-blue-600/20' : 
+                  'hover:scale-105 hover:rotate-y-6 hover:translate-z-4 bg-gradient-to-br from-zinc-900/90 to-neutral-900/90 hover:from-blue-600/80 hover:to-indigo-500/80 hover:border-blue-500/20'}
               `}>
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-zinc-500/5 to-neutral-500/5" />
+
                 {/* Data flow animation */}
                 <div className={`
                   absolute inset-0 overflow-hidden rounded-lg
                   ${activeSkill === index ? 'opacity-100' : 'opacity-0'}
                   transition-opacity duration-500
                 `}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-blue-500/10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-neutral-400/5 via-zinc-400/5 to-neutral-400/5" />
                   <div className="absolute h-[600%] w-4 bg-white/[0.02] -skew-x-[45deg] 
                                 animate-[dataflow_2s_linear_infinite]" />
                 </div>
@@ -165,7 +167,7 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
                 <div className={`
                   absolute inset-0 rounded-lg
                   transition-opacity duration-300 ease-in-out
-                  bg-gradient-to-r from-blue-600/0 via-purple-600/10 to-blue-600/0
+                  bg-gradient-to-r from-zinc-400/0 via-neutral-400/5 to-zinc-400/0
                   ${activeSkill === index ? 'opacity-100' : 'opacity-0'}
                 `} />
 
@@ -173,7 +175,7 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
                 <span className={`
                   relative z-10 text-sm font-medium tracking-wide
                   transition-colors duration-300
-                  ${activeSkill === index ? 'text-white' : 'text-white/80'}
+                  ${activeSkill === index ? 'text-blue-100' : 'text-neutral-400 group-hover:text-blue-100'}
                 `}>
                   {skill}
                 </span>
@@ -181,8 +183,16 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
                 {/* Bottom highlight */}
                 <div className={`
                   absolute bottom-0 left-0 right-0 h-[1px]
-                  bg-gradient-to-r from-transparent via-blue-500/50 to-transparent
+                  bg-gradient-to-r from-transparent via-blue-500/20 to-transparent
                   transition-opacity duration-300
+                  ${activeSkill === index ? 'opacity-100' : 'opacity-0'}
+                `} />
+
+                {/* 3D lighting effect */}
+                <div className={`
+                  absolute inset-0 rounded-lg
+                  bg-gradient-to-tr from-black/0 via-zinc-100/5 to-neutral-100/5
+                  transition-opacity duration-500
                   ${activeSkill === index ? 'opacity-100' : 'opacity-0'}
                 `} />
               </div>

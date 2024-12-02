@@ -2,6 +2,32 @@ import { Github, Linkedin } from 'lucide-react';
 import LossLandscapeGame from './animations/LossLandscape';
 import SkillsAnimation from './animations/SkillsAnimation';
 
+const DataScientistTitle = () => {
+  return (
+    <div className="space-y-6">
+      <div className="relative inline-block">
+        <p className="text-xl relative group">
+          {/* Main text with modern gradient and animation */}
+          <span className="relative inline-block font-bold tracking-wide cursor-default">
+            {/* Glowing background that appears on hover */}
+            <span className="absolute -inset-1 blur-xl bg-gradient-to-r from-blue-600/20 to-indigo-500/20 group-hover:opacity-100 opacity-0 transition-opacity duration-500" />
+            
+            {/* Animated underline */}
+            <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-gradient-to-r from-blue-500 to-indigo-400 
+                           group-hover:w-full transition-all duration-700 ease-in-out" />
+            
+            {/* Text with gradient */}
+            <span className="relative bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 
+                           hover:from-blue-300 hover:to-indigo-300 transition-all duration-500">
+              DATA SCIENTIST
+            </span>
+          </span>
+        </p>
+      </div>
+    </div>
+  );
+};
+
 const TextSection = () => {
   const skills = [
     'Deep Learning', 
@@ -31,20 +57,8 @@ const TextSection = () => {
 
           {/* Role & Skills */}
           <div className="space-y-6">
-            <p className="text-xl text-gray-300">
-              <span className="text-blue-400 font-semibold group">
-                Data Scientist
-                <svg className="inline-block ml-2 w-6 h-6" viewBox="0 0 24 24">
-                  <path 
-                    className="stroke-current animate-draw"
-                    fill="none" 
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    d="M3 12h4l3-9 4 18 3-9h4"
-                  />
-                </svg>
-              </span>
-            </p>
+            {/* Data Scientist Title */}
+            <DataScientistTitle />
             
             {/* Integrated SkillsAnimation component */}
             <SkillsAnimation skills={skills} />
