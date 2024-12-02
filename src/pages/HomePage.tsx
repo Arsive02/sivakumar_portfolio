@@ -33,7 +33,7 @@ const HomePage = () => {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="relative min-h-[80vh] py-8 bg-gradient-to-b from-black via-gray-900 to-black">
+        <section id="experience" className="relative min-h-[70vh] py-2 bg-gradient-to-b from-black via-gray-900 to-black">
           <ExperienceSection />
         </section>
 
@@ -51,7 +51,7 @@ const HomePage = () => {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="relative min-h-[80vh] py-12 bg-black">
+        <section id="skills" className="relative min-h-[70vh] py-2 bg-black">
           <div className="max-w-7xl mx-auto px-4">
             <div className="section-heading mb-8">
               <Cpu className="w-8 h-8 text-blue-500" />

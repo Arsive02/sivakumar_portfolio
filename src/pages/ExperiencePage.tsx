@@ -44,7 +44,7 @@ const ExperienceHeader = () => {
   const canvasRef = useRef(null);
 
   return (
-    <div className="relative min-h-[60vh] bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
+    <div className="relative min-h-[80vh] bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
       {/* Back Button */}
       <Link 
         to="/home"
@@ -65,10 +65,8 @@ const ExperienceHeader = () => {
             Journey Through Time
           </h1>
           <p className="text-lg text-gray-300 mb-6 leading-relaxed text-justify">
-            Embarking on a voyage through the realms of AI and Machine Learning, each experience 
-            is a beacon illuminating the path of innovation. Just as a rover navigates the enigmatic 
-            terrains of distant planets, my journey is a relentless pursuit of knowledge, pushing the 
-            boundaries of what's possible in the ever-evolving landscape of technology.
+          Navigating through the complexity of data like qubits in superposition, each analysis unveils new dimensions of insight. 
+          As a data scientist, my journey transforms the uncertainty of raw information into meaningful patterns, collapsing possibilities into clarity through the power of artificial intelligence and machine learning.
           </p>
           <div className="flex gap-4">
             <div className="flex flex-col">

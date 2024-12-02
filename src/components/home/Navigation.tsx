@@ -1,12 +1,126 @@
-import { useState, } from 'react';
+import { useState, useCallback } from 'react';
 import { Menu, X, User, BriefcaseIcon } from 'lucide-react';
 import MobiusStrip from './animations/MobiusStrip';
 import GraphNodeNav from './navigation/GeometricNav';
 
+const GlitchText = ({ text }: { text: string }) => {
+  const [isGlitching, setIsGlitching] = useState(false);
+
+  const handleHover = useCallback(() => {
+    if (!isGlitching) {
+      setIsGlitching(true);
+      setTimeout(() => setIsGlitching(false), 1000);
+    }
+  }, [isGlitching]);
+
+  return (
+    <div 
+      className="inline-block relative"
+      onMouseEnter={handleHover}
+    >
+      <style >{`
+        .char {
+          display: inline-block;
+          position: relative;
+        }
+
+        .glitching .char {
+          animation: glitch-float 1s ease-out forwards;
+        }
+
+        .glitching .char:before,
+        .glitching .char:after {
+          content: attr(data-char);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, #60A5FA, #A78BFA);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          opacity: 0;
+          animation: glitch-split 1s ease-out forwards;
+        }
+
+        .glitching .char:before {
+          animation-name: glitch-left;
+        }
+
+        .glitching .char:after {
+          animation-name: glitch-right;
+        }
+
+        @keyframes glitch-float {
+          0%, 100% { transform: translateY(0); }
+          20% { transform: translateY(-1px); }
+          40% { transform: translateY(1px); }
+          60% { transform: translateY(-0.5px); }
+          80% { transform: translateY(0.5px); }
+        }
+
+        @keyframes glitch-left {
+          0%, 100% { 
+            transform: translateX(0);
+            opacity: 0;
+          }
+          20%, 80% {
+            transform: translateX(-2px);
+            opacity: 0.7;
+          }
+          40% {
+            transform: translateX(-1px);
+            opacity: 0.5;
+          }
+          60% {
+            transform: translateX(-3px);
+            opacity: 0.3;
+          }
+        }
+
+        @keyframes glitch-right {
+          0%, 100% { 
+            transform: translateX(0);
+            opacity: 0;
+          }
+          20%, 80% {
+            transform: translateX(2px);
+            opacity: 0.7;
+          }
+          40% {
+            transform: translateX(3px);
+            opacity: 0.5;
+          }
+          60% {
+            transform: translateX(1px);
+            opacity: 0.3;
+          }
+        }
+      `}</style>
+
+      <span className={`text-xl font-semibold base-text ${isGlitching ? 'glitching' : ''}`} style={{ color: '#60A5FA' }}>
+        {text.split('').map((char, index) => (
+          <span 
+            key={index} 
+            className="char base-text" 
+            data-char={char}
+            style={{ 
+              animationDelay: `${index * 0.05}s`,
+              '--index': index
+            } as React.CSSProperties}
+          >
+            {char}
+          </span>
+        ))}
+      </span>
+    </div>
+  );
+};
+
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Main nav items
   const mainNavItems = [
     { id: 'about', label: 'About', icon: User },
     { id: 'experience', label: 'Experience', icon: BriefcaseIcon }
@@ -26,23 +140,16 @@ const Navigation = () => {
           {/* Logo/Name */}
           <div className="flex items-center gap-8">
             <MobiusStrip />
-            <div className="group cursor-pointer">
-              <div className="relative">
-                <span className="text-xl font-semibold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Sivakumar
-                </span>
-                <div className="absolute -bottom-5 left-0 right-0 flex items-center justify-center space-x-1 opacity-0 group-hover:opacity-100 transform translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-                  <span className="text-xs text-gray-400">[</span>
-                  <span className="text-xs text-blue-400 whitespace-nowrap">data_scientist</span>
-                  <span className="text-xs text-gray-400">]</span>
+            <div className="group">
+                <div className="relative flex gap-2">
+                  <GlitchText text="Sivakumar" />
+                  <GlitchText text="Ramakrishnan" />
                 </div>
-              </div>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Rest of the navigation remains the same */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* Main nav items */}
             {mainNavItems.map((item) => (
               <button
                 key={item.id}
@@ -55,13 +162,11 @@ const Navigation = () => {
               </button>
             ))}
 
-            {/* Graph Node Navigation */}
             <div className="relative flex items-center">
               <GraphNodeNav onSelect={scrollToSection} />
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <button 
             className="md:hidden relative p-2 rounded-lg group"
             onClick={() => setIsMenuOpen(!isMenuOpen)}

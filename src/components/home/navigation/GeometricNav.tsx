@@ -18,7 +18,7 @@ const Tesseract: React.FC<TesseractProps> = ({ isOpen }) => {
 
     const animate = () => {
       const now = Date.now();
-      const delta = (now - startTime) * 0.001; // seconds
+      const delta = (now - startTime) * 0.003; // seconds
       
       setRotation({
         x: 45 + Math.sin(delta * 0.5) * 15,
