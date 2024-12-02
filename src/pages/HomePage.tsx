@@ -1,15 +1,34 @@
+import { useEffect, useRef } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { BookIcon, Cpu, Gamepad2Icon, GraduationCapIcon, Medal, Terminal } from 'lucide-react';
 import TextSection from '../components/home/About';
 import Navigation from '../components/home/Navigation';
 import ExperienceSection from '../components/home/ExperienceSection';
 import EducationSection from '../components/home/Education';
 import SkillsOrbit from '../components/skills/SkillsGraph';
+import FeaturedProjects from '../components/projects/FeaturedProjects';
+import AchievementsSection from '../components/home/AchievementsSection';
 import "../styles/home/homepage.css";
 import "../styles/home/education.css";
-import FeaturedProjects from '../components/projects/FeaturedProjects';
 import "../styles/home/components/nav.css";
 
 const HomePage = () => {
+  const [searchParams] = useSearchParams();
+  const achievementsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Check if we should scroll to achievements section
+    const section = searchParams.get('section');
+    if (section === 'achievements' && achievementsRef.current) {
+      // Add a small delay to ensure the page is fully loaded
+      setTimeout(() => {
+        if (achievementsRef.current) {
+          achievementsRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [searchParams]);
+  
   return (
     <div className="homepage">
       {/* Fixed Navigation Bar */}
@@ -76,20 +95,21 @@ const HomePage = () => {
         </section>
 
         {/* Achievements Section */}
-        <section id="achievements" className="section bg-gradient-to-b from-black to-gray-900 py-12">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="section-heading mb-8">
-              <Medal className="w-8 h-8 text-blue-500" />
-              <h2 className="section-title">Achievements</h2>
-            </div>
-            {/* Achievements content will go here */}
-            <div className="achievements-content">
-              <p>Certifications, Medals and stuff (kaggle)</p>
-            </div>
+        <section 
+        ref={achievementsRef}
+        id="achievements" 
+        className="section bg-gradient-to-b from-black to-gray-900 py-12"
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="section-heading mb-8">
+            <Medal className="w-8 h-8 text-blue-500" />
+            <h2 className="section-title">Achievements</h2>
           </div>
-          
-          <div className="decorative-blur w-80 h-80 bg-blue-500/5 absolute right-0 bottom-0" />
-        </section>
+          <AchievementsSection />
+        </div>
+        
+        <div className="decorative-blur w-80 h-80 bg-blue-500/5 absolute right-0 bottom-0" />
+      </section>
 
         {/* Personal */}
         <section id="hobbies" className="section bg-gradient-to-b from-black via-gray-900 to-black py-12">
