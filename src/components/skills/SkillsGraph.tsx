@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
-import { Code2, Brain, Database, Wrench } from 'lucide-react';
+import { Brain, Database, Code2, Wrench, CircuitBoardIcon } from 'lucide-react';
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { motion } from "framer-motion";
 
 interface SubSkill {
   name: string;
-  icon?: string; // URL to the icon image
+  iconPath: string;
+  description?: string;
 }
 
 interface Skill {
@@ -15,7 +19,7 @@ interface Skill {
 }
 
 const SkillsShowcase = () => {
-  const [activeSkill, setActiveSkill] = useState<string | null>(null);
+  const [activeSkill, setActiveSkill] = useState<string>('Deep Learning');
 
   const skills: Skill[] = [
     {
@@ -24,10 +28,26 @@ const SkillsShowcase = () => {
       color: 'from-blue-600 to-purple-600',
       description: 'Specialized in neural architectures and deep learning systems',
       subskills: [
-        { name: 'Neural Networks', icon: '/api/placeholder/24/24' },
-        { name: 'Computer Vision', icon: '/api/placeholder/24/24' },
-        { name: 'NLP', icon: '/api/placeholder/24/24' },
-        { name: 'Multimodal AI', icon: '/api/placeholder/24/24' }
+        { 
+          name: 'Neural Networks', 
+          iconPath: '/assets/icons/deep-learning.png',
+          description: 'Deep understanding of neural network architectures' 
+        },
+        { 
+          name: 'Computer Vision', 
+          iconPath: '/assets/icons/vision.png',
+          description: 'Expertise in image processing and analysis' 
+        },
+        { 
+          name: 'NLP', 
+          iconPath: '/assets/icons/nlp.png',
+          description: 'Natural language processing and understanding' 
+        },
+        { 
+          name: 'Multimodal AI', 
+          iconPath: '/assets/icons/multi-channel.png',
+          description: 'Integration of multiple data modalities' 
+        },
       ]
     },
     {
@@ -36,9 +56,39 @@ const SkillsShowcase = () => {
       color: 'from-green-600 to-teal-600',
       description: 'Experience with various ML paradigms and algorithms',
       subskills: [
-        { name: 'Supervised Learning', icon: '/api/placeholder/24/24' },
-        { name: 'Unsupervised Learning', icon: '/api/placeholder/24/24' },
-        { name: 'Reinforcement Learning', icon: '/api/placeholder/24/24' }
+        { 
+          name: 'Supervised Learning', 
+          iconPath: '/assets/icons/supervised.png',
+          description: 'Classification and regression models' 
+        },
+        { 
+          name: 'Unsupervised Learning', 
+          iconPath: '/assets/icons/unsupervised.png',
+          description: 'Clustering and dimensionality reduction' 
+        },
+        { 
+          name: 'Reinforcement Learning', 
+          iconPath: '/assets/icons/reinforcement_learning.png',
+          description: 'Agent-based learning systems' 
+        }
+      ]
+    },
+    {
+      name: 'Quantum Computing',
+      Icon: CircuitBoardIcon,
+      color: 'from-yellow-600 to-green-600',
+      description: 'Fundamentals of quantum mechanics and quantum algorithms',
+      subskills: [
+        { 
+          name: 'Qubits', 
+          iconPath: '/assets/icons/qubit.png',
+          description: 'Quantum bits and superposition' 
+        },
+        { 
+          name: 'Quantum Algorithms', 
+          iconPath: '/assets/icons/quantum.png',
+          description: 'Exploration of quantum computing algorithms'
+        }
       ]
     },
     {
@@ -47,10 +97,26 @@ const SkillsShowcase = () => {
       color: 'from-orange-600 to-red-600',
       description: 'Proficient in multiple programming languages',
       subskills: [
-        { name: 'Python', icon: '/api/placeholder/24/24' },
-        { name: 'Java', icon: '/api/placeholder/24/24' },
-        { name: 'R', icon: '/api/placeholder/24/24' },
-        { name: 'TypeScript', icon: '/api/placeholder/24/24' }
+        { 
+          name: 'Python', 
+          iconPath: '/assets/icons/python.svg',
+          description: 'Primary language for ML/DL development' 
+        },
+        { 
+          name: 'Java', 
+          iconPath: '/assets/icons/java.png',
+          description: 'Backend development and Android apps' 
+        },
+        { 
+          name: 'TypeScript', 
+          iconPath: '/assets/icons/ts.svg',
+          description: 'Frontend development with React' 
+        },
+        { 
+          name: 'R', 
+          iconPath: '/assets/icons/r.png',
+          description: 'Statistical analysis and visualization' 
+        }
       ]
     },
     {
@@ -59,134 +125,157 @@ const SkillsShowcase = () => {
       color: 'from-purple-600 to-pink-600',
       description: 'Expertise in modern development tools',
       subskills: [
-        { name: 'PyTorch', icon: '/api/placeholder/24/24' },
-        { name: 'TensorFlow', icon: '/api/placeholder/24/24' },
-        { name: 'Git', icon: '/api/placeholder/24/24' },
-        { name: 'AWS', icon: '/api/placeholder/24/24' }
+        { 
+          name: 'PyTorch', 
+          iconPath: '/assets/icons/pytorch.svg',
+          description: 'Deep learning framework' 
+        },
+        { 
+          name: 'TensorFlow', 
+          iconPath: '/assets/icons/tensorflow.svg',
+          description: 'Machine learning platform' 
+        },
+        { 
+          name: 'Git', 
+          iconPath: '/assets/icons/git.png',
+          description: 'Version control system' 
+        },
+        { 
+          name: 'AWS', 
+          iconPath: '/assets/icons/aws.svg',
+          description: 'Cloud computing platform' 
+        }
       ]
     }
   ];
 
-  const handleSkillClick = (skillName: string) => {
-    setActiveSkill(activeSkill === skillName ? null : skillName);
-  };
+  const activeSkillData = skills.find(s => s.name === activeSkill);
 
   return (
     <div className="relative w-full max-w-7xl mx-auto py-16 px-4">
-      {/* Main heading */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+      {/* Main heading with animated gradient */}
+      <div className="text-center mb-16 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-3xl" />
+        <h2 className="relative text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
           Technical Skills
         </h2>
-        <p className="text-gray-400">Click on a skill to explore more</p>
+        <p className="relative text-lg text-blue-200/80 font-light">
+          Click on skills to explore more
+        </p>
       </div>
 
-      {/* Skills grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {skills.map((skill) => (
-          <div
-            key={skill.name}
-            onClick={() => handleSkillClick(skill.name)}
-            className={`
-              relative overflow-hidden rounded-xl
-              transition-all duration-500 ease-out cursor-pointer
-              border border-gray-800/50 bg-gray-900/50 backdrop-blur-sm
-              hover:shadow-xl hover:shadow-blue-500/10
-              ${activeSkill === skill.name ? 
-                'lg:col-span-2 lg:row-span-2 scale-100 h-[400px]' : 
-                'h-[140px] hover:scale-105'
-              }
-              group
-            `}
-          >
-            {/* Background gradient */}
-            <div className={`
-              absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity
-              bg-gradient-to-br ${skill.color}
-            `} />
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* Sidebar */}
+        <div className="lg:w-1/4">
+          <ScrollArea className="h-[500px] rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm p-4">
+            <div className="space-y-3">
+              {skills.map((skill) => (
+                <button
+                  key={skill.name}
+                  onClick={() => setActiveSkill(skill.name)}
+                  className={`
+                    w-full px-4 py-3 rounded-xl transition-all duration-500
+                    flex items-center gap-3 group
+                    ${activeSkill === skill.name 
+                      ? 'bg-gradient-to-r ' + skill.color + ' shadow-lg shadow-' + skill.color.split('-')[1] + '/20'
+                      : 'hover:bg-white/5'
+                    }
+                  `}
+                >
+                  <skill.Icon className={`w-5 h-5 transition-transform duration-500 ${
+                    activeSkill === skill.name 
+                      ? 'text-white scale-110' 
+                      : 'text-gray-400 group-hover:scale-110'
+                  }`} />
+                  <span className="font-medium">{skill.name}</span>
+                </button>
+              ))}
+            </div>
+          </ScrollArea>
+        </div>
 
-            {/* Content */}
-            <div className="relative h-full flex flex-col p-6">
-              {/* Icon and title - fixed height */}
-              <div className="flex items-center space-x-4 mb-3">
-                <div className={`
-                  p-2 rounded-lg bg-gradient-to-br ${skill.color}
-                  bg-opacity-20 group-hover:bg-opacity-30 transition-all
-                `}>
-                  <skill.Icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-white">{skill.name}</h3>
-              </div>
-
-              {/* Description - fixed height */}
-              <p className="text-gray-400 text-sm flex-grow line-clamp-2">
-                {skill.description}
-              </p>
-
-              {/* Expanded content */}
-              {activeSkill === skill.name && (
-                <div className="mt-6 opacity-0 animate-fadeIn">
-                  <div className="border-t border-gray-800/50 pt-4">
-                    <h4 className="text-lg font-semibold text-white mb-4">Related Technologies</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      {skill.subskills.map((subskill, index) => (
-                        <div 
-                          key={index} 
-                          className="flex items-center space-x-3 p-3 rounded-lg
-                                   bg-gray-800/30 hover:bg-gray-800/50 transition-colors"
-                        >
-                          {subskill.icon && (
-                            <img 
-                              src={subskill.icon} 
-                              alt={subskill.name}
-                              className="w-6 h-6 object-contain"
-                            />
-                          )}
-                          <span className="text-gray-300">{subskill.name}</span>
-                        </div>
-                      ))}
+        {/* Main content */}
+        <div className="lg:w-3/4">
+          {activeSkillData && (
+            <div className="space-y-6">
+              {/* Skill description */}
+              <Card className="border-0 rounded-2xl bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${activeSkillData.color}`}>
+                      <activeSkillData.Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{activeSkillData.name}</h3>
+                      <p className="text-gray-400">{activeSkillData.description}</p>
                     </div>
                   </div>
-                </div>
-              )}
+                </CardContent>
+              </Card>
 
-              {/* Bottom border - consistent positioning */}
-              <div className={`
-                absolute bottom-0 left-0 right-0 h-1
-                bg-gradient-to-r ${skill.color} opacity-0
-                group-hover:opacity-50 transition-opacity
-              `} />
+              {/* Subskills grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {activeSkillData.subskills.map((subskill, index) => (
+                  <motion.div
+                    key={index}
+                    layout
+                    className={`
+                      cursor-pointer rounded-2xl
+                      bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-sm
+                      hover:from-gray-900/70 hover:to-black/70
+                      transition-all duration-500
+                    `}
+                  >
+                    <motion.div layout className="p-4">
+                      <div className="flex items-center gap-3">
+                        <img 
+                          src={subskill.iconPath}
+                          alt={subskill.name}
+                          className="w-6 h-6 object-contain"
+                        />
+                        <span className="font-medium text-white">{subskill.name}</span>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-
-            {/* Corner decoration */}
-            <div className={`
-              absolute -top-8 -right-8 w-16 h-16
-              bg-gradient-to-br ${skill.color}
-              transform rotate-45
-              opacity-20 group-hover:opacity-30 transition-opacity
-            `} />
-          </div>
-        ))}
+          )}
+        </div>
       </div>
 
       {/* Background particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 30 }).map((_, i) => (
           <div
             key={i}
-            className="absolute w-2 h-2 rounded-full animate-float opacity-20"
+            className="absolute w-2 h-2 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               background: `linear-gradient(to bottom right, 
                 ${Math.random() > 0.5 ? '#60A5FA' : '#818CF8'}, 
                 ${Math.random() > 0.5 ? '#C084FC' : '#F472B6'})`,
+              opacity: 0.15,
               animationDelay: `${Math.random() * 5}s`,
               animationDuration: `${5 + Math.random() * 5}s`
             }}
           />
         ))}
       </div>
+
+      <style>{`
+        @keyframes gradient {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        
+        .animate-gradient {
+          background-size: 200% auto;
+          animation: gradient 8s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };

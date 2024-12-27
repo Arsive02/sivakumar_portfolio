@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { BookIcon, Cpu, Gamepad2Icon, GraduationCapIcon, Medal, Terminal } from 'lucide-react';
+import { BookIcon, Cpu, Gamepad2Icon, GraduationCapIcon, Lightbulb, Medal } from 'lucide-react';
 import TextSection from '../components/home/About';
 import Navigation from '../components/home/Navigation';
 import ExperienceSection from '../components/home/ExperienceSection';
@@ -11,6 +11,7 @@ import AchievementsSection from '../components/home/AchievementsSection';
 import "../styles/home/homepage.css";
 import "../styles/home/education.css";
 import "../styles/home/components/nav.css";
+import '../styles/home/about.css';
 
 const HomePage = () => {
   const [searchParams] = useSearchParams();
@@ -60,8 +61,8 @@ const HomePage = () => {
         <section id="projects" className="section bg-gradient-to-b from-black via-gray-900/50 to-black py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="section-heading mb-8">
-              <Terminal className="w-8 h-8 text-blue-500" />
-              <h2 className="section-title">Projects</h2>
+              <Lightbulb className="w-8 h-8 text-blue-500" />
+              <h2 className="section-title">Research & Project work</h2>
             </div>
             <FeaturedProjects />
           </div>

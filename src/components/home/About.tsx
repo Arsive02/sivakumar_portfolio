@@ -33,7 +33,8 @@ const TextSection = () => {
     'Deep Learning', 
     'Natural Language Processing', 
     'Computer Vision', 
-    'Multimodal AI'
+    'Multimodal AI',
+    'Quantum Computing',
   ];
 
   return (

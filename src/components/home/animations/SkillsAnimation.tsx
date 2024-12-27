@@ -99,8 +99,8 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
 
             const gradient = ctx.createLinearGradient(node.x, node.y, otherNode.x, otherNode.y);
             gradient.addColorStop(0, `rgba(59, 130, 246, ${opacity})`);
-            gradient.addColorStop(0.5, `rgba(147, 51, 234, ${opacity})`);
-            gradient.addColorStop(1, `rgba(59, 130, 246, ${opacity})`);
+            gradient.addColorStop(0.5, `rgba(34, 211, 238, ${opacity})`);
+            gradient.addColorStop(1, `rgba(99, 102, 241, ${opacity})`);
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 0.5;
@@ -124,9 +124,9 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
  
   return (
     <div className="space-y-4">
-      <p className="text-lg font-light tracking-wide text-gray-400/80">
+      <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-blue-500 bg-clip-text text-transparent animate-gradient-x tracking-wider mb-4">
         Specializing in:
-      </p>
+      </h2>
       
       <div ref={containerRef} className="relative min-h-[120px] p-4 perspective-1000">
         <div className="relative z-10 flex flex-wrap gap-4">
@@ -143,14 +143,14 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
                 backdrop-blur-xl
                 transform-gpu preserve-3d
                 transition-all duration-500 ease-out
-                border border-zinc-800/10
-                shadow-lg shadow-black/20
+                border border-blue-500/20
+                shadow-lg shadow-blue-500/10
                 ${activeSkill === index ? 
-                  'scale-110 rotate-y-12 translate-z-8 bg-gradient-to-br from-blue-900/90 to-indigo-500/90 border-blue-600/20' : 
-                  'hover:scale-105 hover:rotate-y-6 hover:translate-z-4 bg-gradient-to-br from-zinc-900/90 to-neutral-900/90 hover:from-blue-600/80 hover:to-indigo-500/80 hover:border-blue-500/20'}
+                  'scale-110 rotate-y-12 translate-z-8 bg-gradient-to-br from-indigo-600/90 via-blue-500/90 to-cyan-400/90 border-blue-400/40' : 
+                  'hover:scale-105 hover:rotate-y-6 hover:translate-z-4 bg-gradient-to-br from-blue-900/30 via-indigo-900/30 to-purple-900/30 hover:from-indigo-600/80 hover:via-blue-500/80 hover:to-cyan-400/80 hover:border-cyan-400/40'}
               `}>
                 {/* Gradient overlay */}
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-zinc-500/5 to-neutral-500/5" />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/5 via-cyan-400/5 to-indigo-500/5" />
 
                 {/* Data flow animation */}
                 <div className={`
@@ -174,8 +174,10 @@ const SkillsAnimation = ({ skills }: SkillsAnimationProps) => {
                 {/* Text content */}
                 <span className={`
                   relative z-10 text-sm font-medium tracking-wide
-                  transition-colors duration-300
-                  ${activeSkill === index ? 'text-blue-100' : 'text-neutral-400 group-hover:text-blue-100'}
+                  transition-all duration-300
+                  ${activeSkill === index ? 
+                    'text-cyan-50 text-shadow-glow' : 
+                    'text-blue-100/80 group-hover:text-cyan-50'}
                 `}>
                   {skill}
                 </span>

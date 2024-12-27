@@ -1,0 +1,23 @@
+@keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px rgba(34, 211, 238, 0.5); }
+    50% { text-shadow: 0 0 20px rgba(34, 211, 238, 0.8); }
+  }
+  
+  .text-shadow-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes dataflow {
+    0% { transform: translateX(-100%) skewX(-45deg); }
+    100% { transform: translateX(200%) skewX(-45deg); }
+  }
+  
+  @keyframes gradient-x {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  .animate-gradient-x {
+    background-size: 200% auto;
+    animation: gradient-x 4s ease infinite;
+  }
