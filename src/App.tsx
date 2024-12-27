@@ -9,6 +9,12 @@ const ExperiencePage = lazy(() => import('./pages/ExperiencePage'));
 const ProjectsPage = lazy(() => import('./pages/Projects'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
 
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <div className="animate-spin">Loading...</div>
+  </div>
+);
+
 // Scroll handler component
 const ScrollToSection = () => {
   const location = useLocation();
@@ -35,7 +41,7 @@ function App() {
   return (
     <Router>
       <ScrollToSection />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingFallback />}>
         <Routes>
           <Route path="/" element={<Intro />} />
           <Route path="/home" element={<HomePage />} />
