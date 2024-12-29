@@ -8,22 +8,21 @@ const FeaturedProjects = () => {
       title: "RAG Architecture",
       description: "Advanced Retrieval-Augmented Generation system using VLLM, supporting millions of users with multi-modal input processing and reduced hallucinations.",
       tags: ["LLM", "VLLM", "RAG", "Python"],
-      image: "/api/placeholder/400/200"
-    },
-    {
-      title: "Aerial Depth Mapping",
-      description: "Deep learning models architecturally optimized for edge devices, enabling drones to estimate depth more efficiently.",
-      tags: ["Deep Learning", "Computer Vision", "Edge Computing"],
-      githubUrl: "https://github.com/yourusername/aerial-depth",
-      demoUrl: "https://praisecu.github.io/research-areas",
-      image: "/api/placeholder/400/200"
+      image: "/assets/imgs/zoho.png"
     },
     {
       title: "Edge AIoT for Product Inspection",
       description: "CNN and SVM models for defective microchip identification with 98% accuracy using AWS DynamoDB, Flask, and Raspberry Pi.",
       tags: ["IoT", "Machine Learning", "AWS", "Flask"],
-      githubUrl: "https://github.com/yourusername/edge-aiot",
-      image: "/api/placeholder/400/200"
+      image: "/assets/imgs/edge.png"
+    },
+    {
+      title: "Autonomous Ground Vehicle",
+      description: "Developed AGV bot with lane & object detection. Implemented navigation using Raspberry Pi, Jetson Nano, and YOLOv4.",
+      tags: ["Computer Vision", "Robotics", "YOLO", "Python", "Raspberry Pi", "Jetson Nano"],
+      image: "/assets/imgs/agv.png",
+      githubUrl: "https://github.com/Balaji-th/Autonomous_Vehicle",
+      projectUrl: "https://youtu.be/48irckF3vA0?feature=shared"
     }
   ];
 

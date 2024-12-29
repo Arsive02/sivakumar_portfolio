@@ -4,9 +4,17 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  optimizeDeps: {
+    include: ['react-pdf', 'pdfjs-dist']
+  },
   publicDir: 'public',
+  base: '/',
+  server: {
+    host: true,
+    strictPort: true,
+    port: 5173
+  },
   css: {
-    
     modules: {
       localsConvention: 'camelCase',
       scopeBehaviour: 'local',
@@ -27,6 +35,7 @@ export default defineConfig({
   build: {
     assetsDir: 'assets',
     outDir: 'dist',
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: {

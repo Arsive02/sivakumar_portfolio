@@ -49,7 +49,7 @@ const ExperienceHeader = ({ activeTab, onTabChange }: ExperienceHeaderProps) => 
           <div className="flex items-center justify-between">
             {/* Back button */}
             <Link 
-              to="/home"
+              to="/home#experience"
               className="flex items-center gap-2 px-4 py-2 rounded-lg border border-blue-500/20 
                        bg-gray-900/50 text-gray-300 hover:text-white hover:bg-gray-900/80 
                        hover:border-blue-500/40 transition-all duration-300 group"

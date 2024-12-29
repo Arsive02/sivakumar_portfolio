@@ -39,43 +39,9 @@ export interface ExperienceGroup {
 
 export const experienceGroups: ExperienceGroup[] = [
   {
-    type: 'research',
-    title: 'Research Experience',
-    description: 'Academic research and assistantships',
-    experiences: [
-      {
-        id: 'cu-ra',
-        title: 'Research Assistant',
-        company: 'University of Colorado Boulder',
-        companyType: 'university',
-        type: 'research',
-        period: {
-          start: 'Dec 2024',
-          end: 'Present'
-        },
-        location: 'Boulder, Colorado',
-        photo: {
-          src: '/assets/imgs/cu_boulder.png',
-          alt: 'Quantum Computing research at CU Boulder'
-        },
-        highlights: [
-          'Quantum Computing Research',
-          'Quantum Machine Learning',
-          'Quantum Algorithms',
-          "Quantum Error Correction"
-        ],
-        skills: ['Quantum Computing', 'Python', 'Qiskit', 'Quantum Algorithms'],
-        links: {
-          publication: '',
-          github: ''
-        }
-      }
-    ]
-  },
-  {
     type: 'industry',
     title: 'Industry Experience',
-    description: 'Professional experience in the tech industry',
+    description: 'Professional experience in AI and software development',
     experiences: [
       {
         id: 'zoho-ds',
@@ -90,17 +56,17 @@ export const experienceGroups: ExperienceGroup[] = [
         location: 'Chennai, India',
         photo: {
           src: '/assets/imgs/zoho_ds.jpg',
-          alt: 'ZOHO Data Science Work'
+          alt: 'ZOHO Data Science'
         },
         highlights: [
-          'Advanced RAG Architecture Development',
-          'AI Solutions Implementation',
-          'Multimodal Research',
-          'Team Leadership & Mentoring'
+          'Advanced RAG Architecture: Developed and scaled an advanced Retrieval-Augmented Generation (RAG) system using VLLM, supporting millions of users with multi-modal input processing and reduced hallucinations',
+          'Implemented diverse AI solutions, including customer assistance prediction, phishing detection with 90% accuracy, Resume Parser and Date Extraction, generative AI tasks like FAQ Generation, reply mail generation, and summary generation',
+          'Multimodality Research: Engaged in foundational work on multimodal AI systems',
+          'Mentorship: Guided, and mentored interns to full-time employees'
         ],
-        skills: ['RAG', 'NLP', 'Machine Learning', 'Deep Learning', 'Python'],
+        skills: ['RAG', 'VLLM', 'NLP', 'Machine Learning', 'Deep Learning', 'Python'],
         documents: {
-          certificate: '/certificates/zoho_ds_certificate.pdf'
+          certificate: '/certificates/Experience.pdf'
         }
       },
       {
@@ -115,50 +81,133 @@ export const experienceGroups: ExperienceGroup[] = [
         },
         location: 'Chennai, India',
         photo: {
-          src: '/assets/imgs/zoho_trainee.jpg',
+          src: '/assets/imgs/zoho.png',
           alt: 'ZOHO Training Period'
         },
         highlights: [
-          'NLP Research and Implementation',
-          'Web Application Development'
+          'Learning phase - Foundational NLP research ranging from rule-based methodologies to implementation of seq-to-seq architectures',
+          'Developed a Java-based e-commerce web application with RESTful APIs using JAX-RS, Spring Boot, and MySQL',
         ],
-        skills: ['NLP', 'Java', 'REST APIs', 'Spring Boot'],
+        skills: ['NLP', 'Java', 'REST APIs', 'JAX-RS'],
         documents: {
-          certificate: '/certificates/zoho_trainee_certificate.pdf'
+          certificate: ''
         }
       }
     ]
   },
   {
+    type: 'research',
+    title: 'Research Experience',
+    description: 'Academic research in aerial depth mapping and computer vision',
+    experiences: [
+      {
+        id: 'cu-aerial',
+        title: 'Research Assistant',
+        company: 'University of Colorado Boulder',
+        companyType: 'university',
+        type: 'research',
+        period: {
+          start: 'Sep 2024',
+          end: 'Oct 2024'
+        },
+        location: 'Boulder, Colorado',
+        photo: {
+          src: '/assets/imgs/praise.png',
+          alt: 'Aerial Depth Mapping Research'
+        },
+        highlights: [
+          'Research on Deep learning models architecturally optimized for edge devices',
+          'Studied depth mapping techniques for aerial imagery',
+        ],
+        skills: ['Deep Learning', 'Computer Vision', 'Edge Computing', 'Python', 'PyTorch', 'Google coral'],
+        links: {
+          project: 'https://praisecu.github.io/research-areas',
+          github: ''
+        }
+      },
+      {
+        id: 'sairam-agv',
+        title: 'Research Student Lead - Team LMES',
+        company: 'Sri Sai Ram Engineering College',
+        companyType: 'university',
+        type: 'research',
+        period: {
+          start: 'Nov 2019',
+          end: 'Feb 2022'
+        },
+        location: 'Chennai, India',
+        photo: {
+          src: '/assets/imgs/agv.png',
+          alt: 'AGV Project'
+        },
+        highlights: [
+          'Developed AGV bot with lane & object detection',
+          'Implemented navigation using Raspberry Pi, Jetson Nano, and YOLOv4'
+        ],
+        skills: ['Computer Vision', 'Robotics', 'YOLO', 'Python', 'Raspberry Pi', 'Jetson Nano'],
+        documents: {
+          report: '/certificates/Final_year_project.pdf'
+        },
+        links: {
+          github: 'https://github.com/Balaji-th/Autonomous_Vehicle',
+          project: 'https://youtu.be/48irckF3vA0?feature=shared'
+        }
+      },
+    ]
+  },
+  
+  {
     type: 'internship',
     title: 'Internships',
-    description: 'Professional internships and training experiences',
+    description: 'Professional internships and hands-on training experiences',
     experiences: [
       {
         id: 'siemens-intern',
-        title: 'Technical Intern',
+        title: 'Intern',
         company: 'SIEMENS',
         companyType: 'corporate',
         type: 'internship',
         period: {
           start: 'Apr 2021',
-          end: 'May 2021'
+          end: 'Apr 2021'
         },
         location: 'Chennai, India',
         photo: {
-          src: '/assets/imgs/siemens_internship.png',
+          src: '/assets/imgs/Siemens_Healthineers_logo.png',
           alt: 'Siemens Internship'
         },
         highlights: [
-          'Medical Imaging Systems',
-          'Hardware Experience'
+          'Gained hands-on experience with advanced medical imaging systems, principal components of PET-CT, MRI, and CT'
         ],
-        skills: ['Medical Imaging', 'PET-CT', 'MRI', 'Technical Documentation'],
+        skills: ['Medical Imaging', 'PET-CT', 'MRI', 'CT'],
         documents: {
-          certificate: '/certificates/siemens_certificate.pdf',
+          certificate: '/certificates/Siemens_cert.pdf',
           report: '/certificates/SIEMENS_INTERNSHIP_REPORT.pdf'
         }
-      }
+      },
+      {
+        id: 'zoho-intern',
+        title: 'Student Intern',
+        company: 'ZOHO',
+        companyType: 'corporate',
+        type: 'internship',
+        period: {
+          start: 'May 2021',
+          end: 'June 2021'
+        },
+        location: 'Chennai, India',
+        photo: {
+          src: '/assets/imgs/zoho.png',
+          alt: 'Student Internship at ZOHO'
+        },
+        highlights: [
+          'Low level design and implementation of Parking Management System, Cricket Score Management System, and a Library Management System',
+        ],
+        skills: ['Java', 'MySQL', 'Spring Boot', 'REST APIs'],
+        documents: {
+          certificate: '/certificates/Zoho_Internship.pdf'
+        }
+      },
     ]
   }
 ];
