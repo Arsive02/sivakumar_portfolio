@@ -2,6 +2,7 @@
 
 Welcome to my portfolio repository! This website showcases my projects, skills, and professional journey. Built with modern web technologies, it features a responsive design and interactive elements to provide visitors with an engaging experience.
 
+Portfolio Website: https://sivakumar-portfolio-omega.vercel.app/ 
 ## 🌟 Features
 
 - **Project Showcase**: Interactive cards displaying my key projects with detailed modal views
@@ -112,8 +113,6 @@ While this is primarily a personal portfolio, suggestions and feedback are welco
 ## 📞 Contact
 
 Sivakumar - sivakumar2ramakrishnan@gmail.com
-
-Project Link: ![https://sivakumar-portfolio-omega.vercel.app/](https://sivakumar-portfolio-omega.vercel.app/)
 
 ## 🙏 Acknowledgments
 
