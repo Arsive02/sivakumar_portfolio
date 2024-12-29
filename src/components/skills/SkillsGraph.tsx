@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Database, Code2, Wrench, CircuitBoardIcon } from 'lucide-react';
+import { Brain, Code2, Wrench, CircuitBoardIcon } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
@@ -23,11 +23,16 @@ const SkillsShowcase = () => {
 
   const skills: Skill[] = [
     {
-      name: 'Deep Learning',
+      name: 'AI & Machine Learning',
       Icon: Brain,
       color: 'from-blue-600 to-purple-600',
       description: 'Specialized in neural architectures and deep learning systems',
       subskills: [
+        {
+          name: 'Deep Learning', 
+          iconPath: '/assets/icons/r-deep-learning.png',
+          description: 'Specialized in neural architectures and deep learning systems',
+        },
         { 
           name: 'Neural Networks', 
           iconPath: '/assets/icons/deep-learning.png',
@@ -48,14 +53,6 @@ const SkillsShowcase = () => {
           iconPath: '/assets/icons/multi-channel.png',
           description: 'Integration of multiple data modalities' 
         },
-      ]
-    },
-    {
-      name: 'Machine Learning',
-      Icon: Database,
-      color: 'from-green-600 to-teal-600',
-      description: 'Experience with various ML paradigms and algorithms',
-      subskills: [
         { 
           name: 'Supervised Learning', 
           iconPath: '/assets/icons/supervised.png',
@@ -108,14 +105,29 @@ const SkillsShowcase = () => {
           description: 'Backend development and Android apps' 
         },
         { 
-          name: 'TypeScript', 
-          iconPath: '/assets/icons/ts.svg',
-          description: 'Frontend development with React' 
-        },
-        { 
           name: 'R', 
           iconPath: '/assets/icons/r.png',
           description: 'Statistical analysis and visualization' 
+        },
+        {
+          name: 'SQL',
+          iconPath: '/assets/icons/sql.png',
+          description: 'Database querying and management'
+        },
+        {
+          name: 'MATLAB',
+          iconPath: '/assets/icons/matlab.png',
+          description: 'Scientific computing and data analysis'
+        },
+        {
+          name: 'C++',
+          iconPath: '/assets/icons/cpp.png',
+          description: 'High-performance computing and systems programming'
+        },
+        {
+          name: 'C',
+          iconPath: '/assets/icons/c.png',
+          description: 'Low-level programming and embedded systems'
         }
       ]
     },
@@ -144,6 +156,41 @@ const SkillsShowcase = () => {
           name: 'AWS', 
           iconPath: '/assets/icons/aws.svg',
           description: 'Cloud computing platform' 
+        },
+        {
+          name: 'Alembic',
+          iconPath: '/assets/icons/alembic.png',
+          description: 'Database migrations tool'
+        },
+        {
+          name: 'Postman',
+          iconPath: '/assets/icons/postman.svg',
+          description: 'API development and testing tool'
+        },
+        {
+          name: 'PostgreSQL',
+          iconPath: '/assets/icons/postgresql.svg',
+          description: 'Relational database management system'
+        },
+        {
+          name: 'HTML/CSS',
+          iconPath: '/assets/icons/html-css.png',
+          description: 'Web development languages'
+        },
+        {
+          name: "Streamlit",
+          iconPath: '/assets/icons/streamlit.png',
+          description: 'Data visualization and web app framework'
+        },
+        {
+          name: 'Flask',
+          iconPath: '/assets/icons/flask.png',
+          description: 'Micro web framework for Python'
+        },
+        {
+          name: 'FastAPI',
+          iconPath: '/assets/icons/fastapi.png',
+          description: 'Modern web framework for APIs'
         }
       ]
     }
