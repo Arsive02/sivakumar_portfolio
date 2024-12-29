@@ -155,7 +155,7 @@ const ProjectsPage = () => {
   
   The research provides both theoretical insights and practical implementations, demonstrating how finding maximum likelihood is equivalent to minimizing KL divergence loss. Additionally, it explores the application of KL divergence in Variational Autoencoders (VAEs), showing its crucial role in latent space regularization.`,
       organization: "University of Colorado",
-      date: "December 2024",
+      date: "October 2024 - December 2024",
       tags: ["Machine Learning", "Statistics", "Deep Learning", "Python", "VAE"],
       techStack: ["Python", "PyTorch", "Scikit-learn", "React", "TensorFlow"],
       features: [

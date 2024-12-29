@@ -1,7 +1,8 @@
 import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink, FileText, Image as ImageIcon, X } from 'lucide-react';
 import React from 'react';
+import PDFViewer from '../shared/PDFViewer';
 
 type AchievementCarouselProps = {
   data: Array<{
@@ -16,6 +17,7 @@ type AchievementCarouselProps = {
     verificationLink?: string;
     highlights: string[];
     certificateImage?: string;
+    certificatePDF?: string;
   }>;
 };
 
@@ -25,6 +27,8 @@ interface CardProps {
     issuer: string;
     date: string;
     verificationLink?: string;
+    certificateImage?: string;
+    certificatePDF?: string;
     longDescription: string;
     skills?: (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined)[];
     highlights?: (string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined)[];
@@ -36,11 +40,13 @@ interface CardProps {
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(({ data, position, onClick }, ref) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isPDFOpen, setIsPDFOpen] = useState(false);
+  const [isImageOpen, setIsImageOpen] = useState(false);
+
   if (!data) {
     return null;
   }
-  
-  const [isHovered, setIsHovered] = useState(false);
 
   const cardVariants = {
     previousSlide: {
@@ -75,115 +81,178 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(({ data, position, onCl
     }
   };
 
+  const handleCertificateClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (data.certificatePDF) {
+      setIsPDFOpen(true);
+    } else if (data.certificateImage) {
+      setIsImageOpen(true);
+    }
+  };
+
+  const handleImageClose = () => {
+    setIsImageOpen(false);
+  };
+
   return (
-    <motion.div
-      ref={ref}
-      variants={cardVariants}
-      initial={false}
-      animate={getCardState()}
-      onClick={onClick}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      className="absolute top-0 left-1/2 w-full max-w-3xl cursor-pointer"
-    >
-      <motion.div 
-        className="rounded-2xl overflow-hidden"
-        animate={{
-          y: isHovered && position === 0 ? -8 : 0,
-          boxShadow: isHovered && position === 0 
-            ? '0 20px 40px rgba(255, 215, 0, 0.15)' 
-            : '0 10px 30px rgba(0, 0, 0, 0.3)'
-        }}
+    <>
+      <motion.div
+        ref={ref}
+        variants={cardVariants}
+        initial={false}
+        animate={getCardState()}
+        onClick={onClick}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        className="absolute top-0 left-1/2 w-full max-w-3xl cursor-pointer"
       >
-        <div className="relative bg-[#121212] p-8 border border-[#2a2a2a]">
-          {/* Rest of your card content remains the same */}
-          <div className="flex items-start justify-between mb-6">
-            <div>
-              <motion.h2 
-                className="text-2xl font-bold text-white mb-2"
-                animate={{ scale: isHovered && position === 0 ? 1.02 : 1 }}
-              >
-                {data.title}
-              </motion.h2>
-              <div className="flex items-center gap-4 text-[#B8860B]">
-                <span>{data.issuer}</span>
-                <span>•</span>
-                <span>{data.date}</span>
+        <motion.div 
+          className="rounded-2xl overflow-hidden"
+          animate={{
+            y: isHovered && position === 0 ? -8 : 0,
+            boxShadow: isHovered && position === 0 
+              ? '0 20px 40px rgba(255, 215, 0, 0.15)' 
+              : '0 10px 30px rgba(0, 0, 0, 0.3)'
+          }}
+        >
+          <div className="relative bg-[#121212] p-8 border border-[#2a2a2a]">
+            <div className="flex items-start justify-between mb-6">
+              <div>
+                <motion.h2 
+                  className="text-2xl font-bold text-white mb-2"
+                  animate={{ scale: isHovered && position === 0 ? 1.02 : 1 }}
+                >
+                  {data.title}
+                </motion.h2>
+                <div className="flex items-center gap-4 text-[#B8860B]">
+                  <span>{data.issuer}</span>
+                  <span>•</span>
+                  <span>{data.date}</span>
+                </div>
+              </div>
+              
+              <div className="flex gap-2">
+                {(data.certificatePDF || data.certificateImage) && (
+                  <motion.button
+                    onClick={handleCertificateClick}
+                    className="p-2 rounded-xl bg-[#2a2a2a] hover:bg-[#333333] transition-colors group"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {data.certificatePDF ? (
+                      <FileText className="w-5 h-5 text-[#FFD700] group-hover:text-white" />
+                    ) : (
+                      <ImageIcon className="w-5 h-5 text-[#FFD700] group-hover:text-white" />
+                    )}
+                  </motion.button>
+                )}
+                {data.verificationLink && (
+                  <motion.a
+                    href={data.verificationLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-xl bg-[#2a2a2a] hover:bg-[#333333] transition-colors group"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={e => e.stopPropagation()}
+                  >
+                    <ExternalLink className="w-5 h-5 text-[#FFD700] group-hover:text-white" />
+                  </motion.a>
+                )}
               </div>
             </div>
-            
-            {data.verificationLink && (
-              <motion.a
-                href={data.verificationLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-xl bg-[#2a2a2a] hover:bg-[#333333] transition-colors group"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={e => e.stopPropagation()}
-              >
-                <ExternalLink className="w-5 h-5 text-[#FFD700] group-hover:text-white" />
-              </motion.a>
-            )}
-          </div>
 
-          <motion.p 
-            className="text-gray-300 leading-relaxed mb-6"
-            animate={{ opacity: position === 0 ? 1 : 0.7 }}
-          >
-            {data.longDescription}
-          </motion.p>
+            {/* Rest of the card content remains the same */}
+            <motion.p 
+              className="text-gray-300 leading-relaxed mb-6"
+              animate={{ opacity: position === 0 ? 1 : 0.7 }}
+            >
+              {data.longDescription}
+            </motion.p>
 
-          <motion.div 
-            className="flex flex-wrap gap-2 mb-6"
-            initial={false}
-            animate="visible"
-          >
-            {data.skills?.map((skill, idx) => (
-              <motion.span
-                key={idx}
-                className="px-3 py-1 rounded-full text-sm bg-[#2a2a2a] text-[#FFD700] border border-[#333333]"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: position === 0 ? 1 : 0.7, y: 0 }}
-                transition={{ 
-                  delay: (typeof idx === 'number' ? idx : 0) * 0.1,
-                  duration: 0.3
-                }}
-              >
-                {skill}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          {data.highlights && (
             <motion.div 
-              className="space-y-4"
+              className="flex flex-wrap gap-2 mb-6"
               initial={false}
               animate="visible"
             >
-              <h3 className="text-lg font-semibold text-white">Key Highlights</h3>
-              <div className="grid grid-cols-2 gap-4">
-                {data.highlights.map((highlight, idx) => (
-                  <motion.div
-                    key={idx}
-                    className="flex items-center gap-3 text-gray-300"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: position === 0 ? 1 : 0.7, x: 0 }}
-                    transition={{ 
-                      delay: (typeof idx === 'number' ? idx : 0) * 0.1,
-                      duration: 0.3
-                    }}
-                  >
-                    <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
-                    <span className="text-sm">{highlight}</span>
-                  </motion.div>
-                ))}
-              </div>
+              {data.skills?.map((skill, idx) => (
+                <motion.span
+                  key={idx}
+                  className="px-3 py-1 rounded-full text-sm bg-[#2a2a2a] text-[#FFD700] border border-[#333333]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: position === 0 ? 1 : 0.7, y: 0 }}
+                  transition={{ 
+                    delay: (typeof idx === 'number' ? idx : 0) * 0.1,
+                    duration: 0.3
+                  }}
+                >
+                  {skill}
+                </motion.span>
+              ))}
             </motion.div>
-          )}
-        </div>
+
+            {data.highlights && (
+              <motion.div 
+                className="space-y-4"
+                initial={false}
+                animate="visible"
+              >
+                <h3 className="text-lg font-semibold text-white">Key Highlights</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {data.highlights.map((highlight, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="flex items-center gap-3 text-gray-300"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: position === 0 ? 1 : 0.7, x: 0 }}
+                      transition={{ 
+                        delay: (typeof idx === 'number' ? idx : 0) * 0.1,
+                        duration: 0.3
+                      }}
+                    >
+                      <div className="w-2 h-2 rounded-full bg-[#FFD700]" />
+                      <span className="text-sm">{highlight}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
+
+      {/* PDF Viewer */}
+      {data.certificatePDF && (
+        <PDFViewer
+          isOpen={isPDFOpen}
+          onClose={() => setIsPDFOpen(false)}
+          pdfUrl={data.certificatePDF}
+          title={`${data.title} - Certificate`}
+        />
+      )}
+
+      {/* Image Viewer Modal */}
+      {isImageOpen && data.certificateImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={handleImageClose}
+        >
+          <div className="relative max-w-4xl max-h-[90vh] mx-4">
+            <img 
+              src={data.certificateImage} 
+              alt={`${data.title} Certificate`}
+              className="w-full h-full object-contain rounded-lg"
+            />
+            <button
+              onClick={handleImageClose}
+              className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+      )}
+    </>
   );
 });
 
@@ -271,7 +340,7 @@ const EnhancedAchievementCarousel = ({ data = [] }: AchievementCarouselProps) =>
         </div>
 
         {/* Progress indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
+        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-center gap-2">
           {data.map((_, idx) => (
             <motion.button
               key={idx}

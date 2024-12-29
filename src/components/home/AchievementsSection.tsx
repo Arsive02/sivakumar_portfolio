@@ -48,10 +48,22 @@ const categories: {
     route: "/achievements?category=awards",
     items: [
       {
-        title: "Kaggle Competition",
+        title: "Kaggle Competition winner",
         issuer: "Kaggle",
         date: "2023",
-        highlight: "Top 5% in NLP Competition"
+        highlight: "Book review rating prediction"
+      },
+      {
+        title: "National Mathematics contest",
+        issuer: "SRM University",
+        date: "2018",
+        highlight: "Mathematics in Astronomy"
+      },
+      {
+        title: "Paper Presentation - AIoT",
+        issuer: "Prince Shri Bhavani College",
+        date: "2021",
+        highlight: "AIoT in Bicycles"
       }
     ]
   },
@@ -62,10 +74,22 @@ const categories: {
     route: "/achievements?category=contributions",
     items: [
       {
-        title: "TensorFlow",
-        issuer: "Google",
+        title: "Goodreads tuned model - T5 base",
+        issuer: "Personal Project",
+        date: "2022",
+        highlight: "Custom T5 model for book rating prediction"
+      },
+      {
+        title: "RoBERTa Toxicity Classifier",
+        issuer: "Personal Project",
         date: "2023",
-        highlight: "Documentation & Bug Fixes"
+        highlight: "RoBERTa model for toxicity classification"
+      },
+      {
+        title: "Paligemma Image to JSON Converter",
+        issuer: "Personal Project",
+        date: "2023",
+        highlight: "Image to JSON data extraction"
       }
     ]
   }
