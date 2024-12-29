@@ -9,7 +9,9 @@ import PDFViewer from '@/components/shared/PDFViewer';
 
 interface ExperienceCardProps {
   experience: Experience;
+  alignment: string;
 }
+
 
 const BulletPoint = ({ children, delay }: { children: React.ReactNode; delay: number }) => (
   <motion.div 
