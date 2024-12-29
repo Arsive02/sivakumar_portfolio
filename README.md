@@ -1,50 +1,127 @@
-# React + TypeScript + Vite
+# Personal Portfolio Website 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my portfolio repository! This website showcases my projects, skills, and professional journey. Built with modern web technologies, it features a responsive design and interactive elements to provide visitors with an engaging experience.
 
-Currently, two official plugins are available:
+## 🌟 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Project Showcase**: Interactive cards displaying my key projects with detailed modal views
+- **Responsive Design**: Seamless experience across all devices and screen sizes
+- **Dark Mode**: Eye-friendly dark theme with modern glassmorphism effects
+- **PDF Viewer**: Integrated viewer for research papers and documentation
+- **Performance Optimized**: Fast loading times and smooth animations
+- **Accessibility**: WCAG compliant with keyboard navigation support
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Framework**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide Icons
+- **Animations**: Custom CSS animations and transitions
+- **PDF Handling**: React PDF viewer
+- **Deployment**: Vercel
 
-- Configure the top-level `parserOptions` property like this:
+## 🔧 Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository:
+```bash
+git clone https://github.com/Arsive02/sivakumar_portfolio.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install dependencies:
+```bash
+cd sivakumar_portfolio
+npm install
 ```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Build for production:
+```bash
+npm run build
+```
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── src/
+│   ├── components/
+│   │   ├── projects/
+│   │   │   ├── ProjectCard.tsx
+│   │   │   └── ProjectModal.tsx
+│   │   └── shared/
+│   │       └── PDFViewer.tsx
+│   ├── styles/
+│   │   └── globals.css
+│   └── pages/
+│       └── index.tsx
+├── public/
+│   └── assets/
+└── package.json
+```
+
+## 🎨 Customization
+
+### Adding New Projects
+
+1. Add your project data to the projects array in `src/data/projects.ts`:
+```typescript
+export const projects = [
+  {
+    title: "Project Name",
+    description: "Short description",
+    longDescription: "Detailed description",
+    tags: ["React", "TypeScript", "Tailwind"],
+    githubUrl: "https://github.com/...",
+    demoUrl: "https://...",
+    image: "/path/to/image.jpg",
+    // ... other properties
+  },
+  // ... more projects
+];
+```
+
+### Modifying Styles
+
+- Global styles are managed in `src/styles/globals.css`
+- Component-specific styles use Tailwind CSS classes
+- Theme customization is available in `tailwind.config.js`
+
+## 💡 Future Enhancements
+
+- [ ] Integrate CI/CD pipeline
+- [ ] Live demos
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## 🤝 Contributing
+
+While this is primarily a personal portfolio, suggestions and feedback are welcome! Feel free to:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📞 Contact
+
+Sivakumar - sivakumar2ramakrishnan@gmail.com
+
+Project Link: ![https://sivakumar-portfolio-omega.vercel.app/](https://sivakumar-portfolio-omega.vercel.app/)
+
+## 🙏 Acknowledgments
+
+- [React Documentation](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide Icons](https://lucide.dev/)
+- All the amazing developers who maintain the libraries used in this project
+
+---
+
+<p align="center">Made by Sivakumar and Claude :) </p>
