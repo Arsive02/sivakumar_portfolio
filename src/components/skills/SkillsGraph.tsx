@@ -19,7 +19,7 @@ interface Skill {
 }
 
 const SkillsShowcase = () => {
-  const [activeSkill, setActiveSkill] = useState<string>('Deep Learning');
+  const [activeSkill, setActiveSkill] = useState<string>('AI & Machine Learning');
 
   const skills: Skill[] = [
     {

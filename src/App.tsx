@@ -24,6 +24,8 @@ const HomePage = lazy(() => import('./pages/HomePage').then(module => {
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage'));
 const ProjectsPage = lazy(() => import('./pages/Projects'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
+const LibraryEntrance = lazy(() => import('./components/library/LibraryEntrance'));
+const ResourcePage = lazy(() => import('./pages/ResourcePage'));
 
 // Enhanced loading component
 const LoadingFallback = () => (
@@ -101,6 +103,7 @@ class ErrorBoundary extends React.Component<{ children: React.ReactNode }, Error
 }
 
 function App() {
+
   return (
     <ErrorBoundary>
       <Router>
@@ -112,6 +115,8 @@ function App() {
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/achievements/*" element={<AchievementsPage />} />
+            <Route path="/resources" element={<LibraryEntrance />} />
+            <Route path="/resources/sections" element={<ResourcePage />} />
             <Route path="*" element={<Intro />} /> {/* Fallback route */}
           </Routes>
         </Suspense>

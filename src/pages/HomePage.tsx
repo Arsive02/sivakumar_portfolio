@@ -12,6 +12,7 @@ import "../styles/home/homepage.css";
 import "../styles/home/education.css";
 import "../styles/home/components/nav.css";
 import '../styles/home/about.css';
+import ResourcePreview from '@/components/home/ResourcePreview';
 
 const HomePage = () => {
   const [searchParams] = useSearchParams();
@@ -137,7 +138,7 @@ const HomePage = () => {
             </div>
             {/* Resources content will go here */}
             <div className="resources-content">
-              <p>Quantum Computing, Math reading</p>
+              <ResourcePreview />
             </div>
           </div>
           
