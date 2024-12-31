@@ -4,11 +4,11 @@ import { OrbitControls, useGLTF, Stars, Environment } from '@react-three/drei';
 import { useNavigate } from 'react-router-dom';
 
 // Preload the model
-useGLTF.preload('/models/library/scene.gltf');
+useGLTF.preload('/models/the_library_gltf/scene.gltf');
 
 // Main Model Component
 function Model() {
-  const gltf = useGLTF('/models/library/scene.gltf');
+  const gltf = useGLTF('/models/the_library_gltf/scene.gltf');
   
   return (
     <primitive 
@@ -27,16 +27,20 @@ function LibraryEntrance() {
     navigate('/resources/sections');
   };
 
+  const handleBackToHome = () => {
+    navigate('/home?section=resources')
+  };
+
   return (
     <div className="flex flex-col items-center min-h-screen bg-[#f5e6d3]">
       {/* Welcome Text Header */}
-    <div className="w-full bg-[#8b4513] py-8 text-center transform -skew-y-3 shadow-lg">
-      <h1 className="text-[#f5e6d3] font-serif text-4xl tracking-wider transform skew-y-3">
-        Welcome to
-        <br />
-        the Digital Library
-      </h1>
-    </div>
+      <div className="w-full bg-[#8b4513] py-8 text-center transform -skew-y-3 shadow-lg">
+        <h1 className="text-[#f5e6d3] font-serif text-4xl tracking-wider transform skew-y-3">
+          Welcome to
+          <br />
+          the Digital Library
+        </h1>
+      </div>
 
       {/* 3D Model Section */}
       <div className="w-full h-[60vh] bg-gray-900 relative">
@@ -88,8 +92,22 @@ function LibraryEntrance() {
         >
           <span className="relative z-10">Enter the Library</span>
         </button>
+        <button
+          onClick={handleBackToHome}
+          className="group relative mt-4 px-12 py-6 bg-[#8b4513] text-[#f5e6d3] 
+                   font-serif text-2xl tracking-wider
+                   border-2 border-[#654321]
+                   hover:bg-[#654321] transition-colors duration-300
+                   shadow-lg hover:shadow-xl
+                   before:content-[''] before:absolute before:inset-0
+                   before:border-2 before:border-[#654321] before:scale-105
+                   before:opacity-0 hover:before:opacity-100
+                   before:transition-all before:duration-300"
+        >
+          <span className="relative z-10">Back to Home</span>
+        </button>
         <div className="mt-4 text-[#8b4513] font-serif italic text-lg">
-          "A library is not a luxury but one of the necessities of life"
+          "Mathematics - the language of the universe"
         </div>
       </div>
     </div>

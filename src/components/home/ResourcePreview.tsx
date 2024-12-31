@@ -6,16 +6,10 @@ const featuredResources = [
     topic: "Quantum Computing",
     resources: [
       {
-        title: "Qiskit Textbook",
-        description: "Comprehensive introduction to quantum computing using Qiskit",
-        url: "https://qiskit.org/textbook/preface.html",
-        tags: ["Quantum Gates", "Circuits"],
-      },
-      {
-        title: "Quantum Country",
-        description: "An essay introducing quantum computing and quantum mechanics",
-        url: "https://quantum.country",
-        tags: ["Quantum Mechanics", "Theory"],
+        title: "Dancing with Qubits",
+        description: "How quantum computing works and how it can change the world of computing",
+        url: "https://learning.oreilly.com/library/view/dancing-with-qubits",
+        tags: ["Quantum Computing", "Book"],
       }
     ]
   },
@@ -23,10 +17,32 @@ const featuredResources = [
     topic: "Mathematics",
     resources: [
       {
-        title: "3Blue1Brown",
-        description: "Visual, intuitive explanations of math concepts",
-        url: "https://www.3blue1brown.com",
-        tags: ["Linear Algebra", "Calculus"],
+        title: "3Blue1Brown: Linear Algebra",
+        description: "Visual and intuitive understanding of linear algebra",
+        url: "https://www.3blue1brown.com/topics/linear-algebra",
+        tags: ["Linear Algebra", "Playlist"],
+      }
+    ]
+  },
+  {
+    topic: "AI",
+    resources: [
+      {
+        title: "Deep learning book",
+        description: "Textbook for deep learning",
+        url: "https://www.deeplearningbook.org/",
+        tags: ["Deep Learning", "Book"],
+      }
+    ]
+  },
+  {
+    topic: "Statistics",
+    resources: [
+      {
+        title: "Introduction to Statistical Learning",
+        description: "Textbook for statistical learning",
+        url: "https://www.statlearning.com/",
+        tags: ["Statistical Learning", "Book"],
       }
     ]
   }

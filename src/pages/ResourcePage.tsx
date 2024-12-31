@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Book, ChevronLeft, ArrowUpRight, Brain, Pi } from 'lucide-react';
+import { Book, ChevronLeft, ArrowUpRight, Brain, Pi, Grid, CpuIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -152,8 +152,8 @@ const ResourcesPage: React.FC = () => {
 
   const categories: CategoryType[] = [
     { id: 'all', label: 'All Resources', icon: Book },
-    { id: 'quantum', label: 'Quantum Computing', icon: Brain },
-    { id: 'linear_algebra', label: 'Linear Algebra', icon: Brain },
+    { id: 'quantum', label: 'Quantum Computing', icon: CpuIcon },
+    { id: 'linear_algebra', label: 'Linear Algebra', icon: Grid },
     { id: 'ai', label: 'AI & ML', icon: Brain },
     { id: 'statistics', label: 'Statistics', icon: Pi }
   ];
@@ -178,7 +178,7 @@ const ResourcesPage: React.FC = () => {
       <header className="fixed top-0 left-0 right-0 bg-black/80 backdrop-blur-md z-50 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-4">
           <Link 
-            to="/home" 
+            to="/home?section=resources" 
             className="inline-flex items-center gap-2 text-gray-400 hover:text-white px-4 py-2 rounded-lg transition-colors hover:bg-white/5"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -192,25 +192,39 @@ const ResourcesPage: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           {/* Title Section */}
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-16 relative overflow-hidden"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
-            <motion.h1 
-              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400"
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,theme(colors.pink.500/0.2)_0%,transparent_70%)]" />
+            <motion.div
+              className="relative z-10 text-4xl md:text-6xl font-bold"
               variants={itemVariants}
+              animate={{
+                textShadow: [
+                  '0 0 10px rgba(255,255,255,0.5)',
+                  '0 0 20px rgba(255,255,255,0.7)',
+                  '0 0 10px rgba(255,255,255,0.5)'
+                ],
+              }}
             >
-              Digital Library
-            </motion.h1>
+              <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 text-transparent bg-clip-text inline-block"
+                    style={{ 
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.1em',
+                      WebkitTextStroke: '1px rgba(255,255,255,0.1)'
+                    }}>
+                Digital Library
+              </span>
+            </motion.div>
             <motion.p 
-              className="mt-4 text-gray-400 text-lg"
+              className="mt-4 text-pink-300 text-lg font-mono tracking-widest"
               variants={itemVariants}
             >
-              Curated collection of learning resources
+              &lt;/&gt; NEURAL.NET_ACCESS v2.0
             </motion.p>
           </motion.div>
-
           {/* Categories */}
           <motion.div 
             className="flex flex-wrap gap-4 mb-12 justify-center"

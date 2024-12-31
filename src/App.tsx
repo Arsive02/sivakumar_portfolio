@@ -24,6 +24,7 @@ const HomePage = lazy(() => import('./pages/HomePage').then(module => {
 const ExperiencePage = lazy(() => import('./pages/ExperiencePage'));
 const ProjectsPage = lazy(() => import('./pages/Projects'));
 const AchievementsPage = lazy(() => import('./pages/AchievementsPage'));
+const HobbiesPage = lazy(() => import('./pages/HobbiesPage'));
 const LibraryEntrance = lazy(() => import('./components/library/LibraryEntrance'));
 const ResourcePage = lazy(() => import('./pages/ResourcePage'));
 
@@ -115,6 +116,7 @@ function App() {
             <Route path="/experience" element={<ExperiencePage />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/achievements/*" element={<AchievementsPage />} />
+            <Route path="/hobbies" element={<HobbiesPage />} />
             <Route path="/resources" element={<LibraryEntrance />} />
             <Route path="/resources/sections" element={<ResourcePage />} />
             <Route path="*" element={<Intro />} /> {/* Fallback route */}

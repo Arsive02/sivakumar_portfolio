@@ -13,6 +13,7 @@ import "../styles/home/education.css";
 import "../styles/home/components/nav.css";
 import '../styles/home/about.css';
 import ResourcePreview from '@/components/home/ResourcePreview';
+import HobbiesPreview from '@/components/home/HobbiesPreview';
 
 const HomePage = () => {
   const [searchParams] = useSearchParams();
@@ -122,7 +123,8 @@ const HomePage = () => {
             </div>
             {/* Hobbies content will go here */}
             <div className="hobbies-content">
-              <p>Lectures, Japanese, Gym, Chess, Flute, social links</p>
+              {/* <p>Lectures, Japanese, Gym, Chess, Flute, social links</p> */}
+              <HobbiesPreview />
             </div>
           </div>
           
