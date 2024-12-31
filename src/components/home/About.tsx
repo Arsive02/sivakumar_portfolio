@@ -112,6 +112,67 @@ const TextSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-purple-500/0 
                             opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </a>
+
+            <a
+              href="https://www.kaggle.com/arsiveai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-6 py-3 bg-gray-800/50 rounded-lg overflow-hidden
+                       hover:bg-gray-800/80 transition-all duration-300 hover:scale-105"
+            >
+              <div className="relative flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22.5C6.201 22.5 1.5 17.799 1.5 12S6.201 1.5 12 1.5 22.5 6.201 22.5 12 17.799 22.5 12 22.5zM10.5 6.75h3v10.5h-3V6.75zm-3 3h3v7.5h-3v-7.5zm6 0h3v7.5h-3v-7.5z" />
+                </svg>
+                <span className="relative overflow-hidden">
+                  <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                    Kaggle
+                  </span>
+                  <span className="absolute top-full left-0 block transition-transform duration-300 group-hover:-translate-y-full">
+                    Kaggle
+                  </span>
+                </span>
+              </div>
+              <div className="absolute inset-0 border border-blue-500/20 rounded-lg group-hover:border-blue-500/40 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-purple-500/0 
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </a>
+
+            <a
+              href="mailto:sivakumar2ramakrishnan@gmail.com?subject=Inquiry%20from%20Portfolio%20Site"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-6 py-3 bg-gray-800/50 rounded-lg overflow-hidden
+                       hover:bg-gray-800/80 transition-all duration-300 hover:scale-105"
+            >
+              <div className="relative flex items-center space-x-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M12 12.713l11.985-8.713H.015L12 12.713zm0 2.574L.015 6.287V18h23.97V6.287L12 15.287z" />
+                </svg>
+                <span className="relative overflow-hidden">
+                  <span className="block transition-transform duration-300 group-hover:-translate-y-full">
+                    Email
+                  </span>
+                  <span className="absolute top-full left-0 block transition-transform duration-300 group-hover:-translate-y-full">
+                    Email
+                  </span>
+                </span>
+              </div>
+              <div className="absolute inset-0 border border-blue-500/20 rounded-lg group-hover:border-blue-500/40 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/10 to-purple-500/0 
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </a>
+
           </div>
         </div>
 

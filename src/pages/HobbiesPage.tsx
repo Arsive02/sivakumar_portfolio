@@ -165,7 +165,7 @@ const HobbiesPage = () => {
               Character Skills & Abilities
             </h1>
           </div>
-          <p className="text-purple-300/80">Select a skill to view your progress and achievements</p>
+          <p className="text-purple-300/80">Select a skill to view my progress and achievements</p>
         </div>
 
         {/* Skill Selector */}
@@ -337,7 +337,7 @@ const HobbiesPage = () => {
         {/* Initial State */}
         {!selectedHobbyData && (
           <div className="text-center text-purple-300/80">
-            Select a skill to view your quest log
+            Select a skill to view my quest log
           </div>
         )}
       </main>
