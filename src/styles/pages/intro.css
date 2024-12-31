@@ -282,6 +282,16 @@ z-index: 1;
   pointer-events: none;
 }
 
+.hint {
+  position: fixed;
+  bottom: 1em;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85em;
+  color: rgb(255, 255, 255);
+  z-index: 100;
+}
+
 /* Animations */
 @keyframes ripple {
   to {

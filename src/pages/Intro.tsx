@@ -40,6 +40,17 @@ const Intro = () => {
     navigate('/home');
   };
 
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        handleClick();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+    return () => document.removeEventListener('keydown', handleKeyPress);
+  }, []);
+
   return (
     <main className="intro-container">
       <div className="galaxy-container">
@@ -55,6 +66,8 @@ const Intro = () => {
             <h3 ref={subtitleRef} className="content__subtitle">
               Data Scientist
             </h3>
+            <p className="hint">Click on the name or press enter to continue</p>
+          
           </div>
         </div>
       </div>
