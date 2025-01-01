@@ -151,15 +151,15 @@ const Navigation = () => {
           {/* Rest of the navigation remains the same */}
           <div className="hidden md:flex items-center space-x-8">
             {mainNavItems.map((item) => (
-              <button
+                <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className="flex items-center space-x-2 px-4 py-2 rounded-lg transition-all duration-300
-                          hover:text-blue-400 text-gray-400 hover:bg-blue-500/10"
-              >
+                      hover:text-blue-400 text-gray-400 hover:bg-blue-500/10 font-sans"
+                >
                 <item.icon className="w-4 h-4" />
                 <span>{item.label}</span>
-              </button>
+                </button>
             ))}
 
             <div className="relative flex items-center">
