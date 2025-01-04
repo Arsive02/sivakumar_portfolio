@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { Brain, Briefcase, GraduationCap } from 'lucide-react';
+import { Brain, Briefcase, GraduationCap, Shield } from 'lucide-react';
 
 interface GroupHeaderProps {
   title: string;
   description: string;
-  type: 'research' | 'industry' | 'internship';
+  type: 'research' | 'industry' | 'internship' | 'responsibility';
 }
 
 const GroupHeader = ({ title, description, type }: GroupHeaderProps) => {
@@ -12,7 +12,8 @@ const GroupHeader = ({ title, description, type }: GroupHeaderProps) => {
   const icons = {
     research: Brain,
     industry: Briefcase,
-    internship: GraduationCap
+    internship: GraduationCap,
+    responsibility: Shield 
   };
 
   const Icon = icons[type];
@@ -60,6 +61,22 @@ const GroupHeader = ({ title, description, type }: GroupHeaderProps) => {
           <div
             key={i}
             className="absolute w-3 h-3 bg-purple-500/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animation: `pulse ${Math.random() * 3 + 2}s ease-in-out infinite`
+            }}
+          />
+        ))}
+      </div>
+    ),
+    responsibility: (
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-red-500/20" />
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-6 h-6 bg-yellow-500/20 rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,

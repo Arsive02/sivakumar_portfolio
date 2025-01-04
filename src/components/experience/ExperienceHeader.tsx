@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ChevronLeft, Brain, Briefcase, GraduationCap } from 'lucide-react';
+import { ChevronLeft, Brain, Briefcase, GraduationCap, Shield } from 'lucide-react';
 
 interface ExperienceTabProps {
   icon: React.ElementType;
@@ -35,7 +35,8 @@ const ExperienceHeader = ({ activeTab, onTabChange }: ExperienceHeaderProps) => 
   const tabs = [
     { id: 'industry', label: 'Industry Experience', icon: Briefcase },
     { id: 'internship', label: 'Internships', icon: GraduationCap },
-    { id: 'research', label: 'Research Experience', icon: Brain }
+    { id: 'research', label: 'Research Experience', icon: Brain },
+    { id: 'responsibility', label: 'Responsibilities', icon: Shield }
   ];
 
   return (

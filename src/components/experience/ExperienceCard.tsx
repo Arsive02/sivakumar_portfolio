@@ -70,6 +70,15 @@ const getTypeStyles = (type: Experience['type']) => {
         bgColor: 'bg-emerald-500/10',
         hoverBgColor: 'hover:bg-emerald-500/20'
       };
+    case 'responsibility':
+      return {
+        borderColor: 'border-amber-500',
+        hoverBorderColor: 'hover:border-amber-400',
+        textColor: 'text-amber-400',
+        hoverTextColor: 'group-hover:text-amber-300',
+        bgColor: 'bg-amber-500/10',
+        hoverBgColor: 'hover:bg-amber-500/20'
+      };
   }
 };
 

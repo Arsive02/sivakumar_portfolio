@@ -1,4 +1,4 @@
-export type ExperienceType = 'industry' | 'research' | 'internship';
+export type ExperienceType = 'industry' | 'research' | 'internship' | 'responsibility';
 export type CompanyType = 'corporate' | 'university' | 'research-lab';
 
 export interface Experience {
@@ -155,7 +155,6 @@ export const experienceGroups: ExperienceGroup[] = [
       },
     ]
   },
-  
   {
     type: 'internship',
     title: 'Internships',
@@ -208,6 +207,37 @@ export const experienceGroups: ExperienceGroup[] = [
           certificate: '/certificates/Zoho_Internship.pdf'
         }
       },
+    ]
+  },
+  {
+    type: 'responsibility',
+    title: 'Responsibilities',
+    description: 'Leadership roles and responsibilities in academic and professional settings',
+    experiences: [
+      {
+        id: 'icms',
+        title: 'Indian Classical Music Society - President',
+        company: 'University of Colorado Boulder',
+        companyType: 'university',
+        type: 'responsibility',
+        period: {
+          start: 'Dec 2024',
+          end: 'Present'
+        },
+        location: 'Boulder, Colorado',
+        photo: {
+          src: '/assets/imgs/icms.png',
+          alt: 'Indian Classical Music Society'
+        },
+        highlights: [
+          'First Recognized Indian Classical Music Society at CU Boulder',
+          'Started with 3 members and now has 20+ members'
+        ],
+        skills: ['Leadership', 'Team Management', 'Event Planning', 'Public Speaking'],
+        documents: {
+          certificate: '/certificates/icms_signup.pdf'
+        }
+      }
     ]
   }
 ];
