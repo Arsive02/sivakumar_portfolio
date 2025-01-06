@@ -161,6 +161,29 @@ export const experienceGroups: ExperienceGroup[] = [
     description: 'Professional internships and hands-on training experiences',
     experiences: [
       {
+        id: 'zoho-intern',
+        title: 'Student Intern',
+        company: 'ZOHO',
+        companyType: 'corporate',
+        type: 'internship',
+        period: {
+          start: 'May 2021',
+          end: 'June 2021'
+        },
+        location: 'Chennai, India',
+        photo: {
+          src: '/assets/imgs/zoho.png',
+          alt: 'Student Internship at ZOHO'
+        },
+        highlights: [
+          'Low level design and implementation of Parking Management System, Cricket Score Management System, and a Library Management System',
+        ],
+        skills: ['Java', 'MySQL', 'Spring Boot', 'REST APIs'],
+        documents: {
+          certificate: '/certificates/Zoho_Internship.pdf'
+        }
+      },
+      {
         id: 'siemens-intern',
         title: 'Intern',
         company: 'SIEMENS',
@@ -185,26 +208,28 @@ export const experienceGroups: ExperienceGroup[] = [
         }
       },
       {
-        id: 'zoho-intern',
-        title: 'Student Intern',
-        company: 'ZOHO',
+        id: 'bsnl-inplant',
+        title: 'In-plant Trainee',
+        company: 'BSNL',
         companyType: 'corporate',
         type: 'internship',
         period: {
-          start: 'May 2021',
-          end: 'June 2021'
+          start: 'Dec 2019',
+          end: 'Dec 2019'
         },
         location: 'Chennai, India',
         photo: {
-          src: '/assets/imgs/zoho.png',
-          alt: 'Student Internship at ZOHO'
+          src: '/assets/imgs/bsnl.png',
+          alt: 'BSNL In plant training'
         },
         highlights: [
-          'Low level design and implementation of Parking Management System, Cricket Score Management System, and a Library Management System',
+          'Hands-on experience with telecom equipment and networking devices',
+          'Learned about the functioning of the telecom industry',
+          'Learned about the seven layers of the OSI model and the TCP/IP model'
         ],
-        skills: ['Java', 'MySQL', 'Spring Boot', 'REST APIs'],
+        skills: ['Networking', 'Telecom', 'OSI Model', 'TCP/IP Model'],
         documents: {
-          certificate: '/certificates/Zoho_Internship.pdf'
+          certificate: '/certificates/bsnl_cert.pdf'
         }
       },
     ]

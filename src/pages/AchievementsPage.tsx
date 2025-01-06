@@ -236,7 +236,7 @@ const AchievementsPage = () => {
       credentialId: "",
       category: "language",
       verificationLink: "",
-      certificateImage: "/certificates/jlpt.png",
+      certificatePDF: "/certificates/jlpt.pdf",
       skills: ["Japanese Language", "Basic Communication", "Cultural Understanding"],
       highlights: [
         "Basic Conversation",
@@ -289,7 +289,8 @@ const AchievementsPage = () => {
         "Presented paper on AIoT in smart devices",
         "Applications of AI in IoT",
         "Smart bicycles and AIoT"
-      ]
+      ],
+      certificateImage: "/assets/imgs/aiot.png"
     },
     {
       title: "Academic Excellence Award",
@@ -304,6 +305,21 @@ const AchievementsPage = () => {
         "Consistent academic performance",
         "Electronics and Communication Engineering"
       ]
+    },
+    {
+      title: "Scholarship for Academic Excellence",
+      description: "Merit scholarship for academic performance",
+      longDescription: "Awarded merit scholarship for academic excellence in my high school final year examinations.",
+      issuer: "Sembakkam Municipality",
+      date: "Nov 2018",
+      category: "scholarship",
+      skills: ["Academic Excellence", "Merit Scholarship", "High School"],
+      highlights: [
+        "Merit scholarship recipient",
+        "Academic excellence award",
+        "High school final year"
+      ],
+      certificateImage: "/assets/imgs/tscholar.png"
     }
   ],
   
