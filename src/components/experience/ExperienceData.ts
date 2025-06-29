@@ -161,6 +161,33 @@ export const experienceGroups: ExperienceGroup[] = [
     description: 'Professional internships and hands-on training experiences',
     experiences: [
       {
+        id: 'ricoh-ai-intern',
+        title: 'Applied AI Intern',
+        company: 'Ricoh USA',
+        companyType: 'corporate',
+        type: 'internship',
+        period: {
+          start: 'May 2025',
+          end: 'Present'
+        },
+        location: 'USA',
+        photo: {
+          src: '/assets/imgs/ricoh.png',
+          alt: 'Ricoh USA Applied AI Internship'
+        },
+        highlights: [
+          'Developing AI-driven solutions for Service Documentation using Agentic AI',
+          'Building intelligent systems to automate and enhance technical documentation workflows',
+          'Implementing serverless architectures with AWS Lambda for scalable AI deployments',
+          'Leveraging AWS Bedrock for advanced language model integration',
+          'Working with DITA (Darwin Information Typing Architecture) for structured content management'
+        ],
+        skills: ['Python', 'SQL', 'AWS Lambda', 'AWS Bedrock', 'DITA', 'Agentic AI', 'NLP'],
+        documents: {
+          certificate: ''
+        }
+      },
+      {
         id: 'zoho-intern',
         title: 'Student Intern',
         company: 'ZOHO',
