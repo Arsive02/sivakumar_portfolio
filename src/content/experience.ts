@@ -21,7 +21,7 @@ export const experiences: Experience[] = [
     title: 'Senior Applied AI Engineer',
     company: 'Ricoh',
     type: 'industry',
-    period: { start: 'May 2026', end: 'Present' },
+    period: { start: 'Apr 2026', end: 'Present' },
     location: 'USA',
     logo: 'ricoh',
     highlights: [
@@ -94,14 +94,14 @@ export const experiences: Experience[] = [
   },
   {
     id: 'zoho-ds',
-    title: 'Data Scientist',
+    title: 'NLP Developer',
     company: 'ZOHO',
     type: 'industry',
     period: { start: 'May 2022', end: 'Jul 2024' },
     location: 'Chennai, India',
     logo: 'zoho_ds',
     highlights: [
-      'Architected a RAG system serving 10K+ queries a day, cutting response latency by 20% and hallucinations by 35% with hybrid retriever and reranker fusion on vLLM',
+      'Architected a RAG system serving millions of customers, cutting response latency by 20% and hallucinations by 35% with hybrid retriever and reranker fusion on vLLM',
       'Built customer-assistance AI with PyTorch and Transformers: phishing detection at 90% accuracy and a resume parser handling 2K+ resumes a month',
       'Generative features: FAQ generation, reply drafting and summarisation',
       'Foundational multimodal research; mentored interns into full-time hires',
