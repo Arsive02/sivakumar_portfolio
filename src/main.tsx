@@ -1,47 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.tsx';
-import './styles/components/animations.css';
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { App } from './app/App'
+import './styles/index.css'
 
-// Add error handling for better debugging
-const root = document.getElementById('root');
+// SVG-filter refraction in backdrop-filter is a Chromium-only capability.
+if (/Chrome\/|Edg\//.test(navigator.userAgent) && !/Firefox/.test(navigator.userAgent)) document.documentElement.classList.add('refraction')
 
-if (!root) {
-  throw new Error('Root element not found');
-}
+// Remember where navigation started so the view-transition wavefront grows from that point.
+addEventListener(
+  'pointerdown',
+  (e) => {
+    document.documentElement.style.setProperty('--vt-x', `${e.clientX}px`)
+    document.documentElement.style.setProperty('--vt-y', `${e.clientY}px`)
+  },
+  { capture: true, passive: true },
+)
 
-// Preload critical resources
-const preloadResources = async () => {
-  // Add any critical resources that need to be preloaded
-  await Promise.all([
-    import('./pages/Intro'),
-    import('./pages/HomePage')
-  ]);
-};
-
-// Initialize app with error handling
-const initApp = async () => {
-  try {
-    await preloadResources();
-    
-    ReactDOM.createRoot(root).render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
-  } catch (error) {
-    console.error('Failed to initialize app:', error);
-    root.innerHTML = `
-      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; color: white; background: black;">
-        <div style="text-align: center;">
-          <h1>Failed to load application</h1>
-          <button onclick="window.location.reload()" style="padding: 8px 16px; background: blue; border-radius: 4px; margin-top: 16px;">
-            Reload page
-          </button>
-        </div>
-      </div>
-    `;
-  }
-};
-
-initApp();
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)

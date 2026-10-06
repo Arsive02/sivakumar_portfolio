@@ -1,0 +1,85 @@
+\documentclass[a4paper,11pt]{letter}
+
+\usepackage{geometry}
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+
+\definecolor{primary}{RGB}{77,31,150}
+\definecolor{secondary}{RGB}{59,130,246}
+
+\geometry{top=0.5in, bottom=0.5in, left=0.5in, right=0.5in}
+
+\titleformat{\section}{\large\bfseries\color{primary}}{}{0em}{}[\titlerule]
+\titlespacing*{\section}{0pt}{5pt}{2pt}
+
+\setlist[itemize]{leftmargin=*, itemsep=0pt, topsep=1pt, parsep=0pt}
+\newcommand{\role}[2]{\textbf{#1}\hfill\mbox{#2}\par}
+\newcommand{\lnk}[2]{{\small\href{#1}{\textcolor{secondary}{#2}}}}
+\setlength{\parskip}{0pt}
+\newcommand{\sep}{\enspace\textbar\enspace}
+
+\begin{document}
+\thispagestyle{empty}
+\setstretch{1.0}
+
+\begin{center}
+    {\Large\textbf{SIVAKUMAR RAMAKRISHNAN}}\\[0.3em]
+    Boulder, CO \sep sivakumar2ramakrishnan@gmail.com \sep
+    \href{https://github.com/Arsive02}{\textcolor{secondary}{GitHub}} \sep
+    \href{https://www.linkedin.com/in/siva-math/}{\textcolor{secondary}{LinkedIn}} \sep
+    \href{https://sivakumar-portfolio-omega.vercel.app/}{\textcolor{secondary}{Portfolio}}
+\end{center}
+\vspace{-0.3em}
+
+\section{SUMMARY}
+Applied AI engineer who ships production agentic systems and automation end to end, from AWS backends and SQL data models to Claude-powered multi-agent workflows that turn days of manual work into minutes. Daily user of AI-assisted development (Claude Code); comfortable owning problems from idea to deployment.
+
+\section{PROFESSIONAL EXPERIENCE}
+\role{RICOH - Senior Applied AI Engineer (Full-time)}{May 2026 - Present}
+\begin{itemize}
+    \item Architected and shipped a Claude-powered multi-agent platform: an orchestrator that routes requests to a Data Analyst agent and a Service agent, which retrieves maintenance documentation to help field technicians diagnose and fix printer issues.
+    \item Added image support to the Service agent, pairing step-by-step repair guidance with procedural illustrations.
+    \item Built a high-throughput document pipeline on Ray, processing thousands of documents in under an hour.
+    \item Automated localized UI snapshot creation with an agentic harness (130 screenshots in each of 7 languages, 900+ images), cutting turnaround from 60 hours of manual work to just 40 minutes.
+\end{itemize}
+\vspace{2pt}\role{RICOH - Applied AI Engineer (Internship)}{May 2025 - Apr 2026}
+\begin{itemize}
+    \item Led the Service agent's initial deployment, adding human feedback loops for continuous improvement, conversational memory, and tool calling to JIRA and Redmine via AWS connectors.
+    \item Designed the foundational AWS architecture (Lambda, DynamoDB, S3, Aurora SQL) as a shared platform for future agents.
+\end{itemize}
+\vspace{2pt}\role{ZOHO - Data Scientist, Research and Development}{May 2022 - Jul 2024}
+\begin{itemize}
+    \item Architected a scalable RAG system serving 10K+ daily queries, cutting response latency by 20\% and hallucinations by 35\% through hybrid retriever-reranker fusion and vLLM.
+    \item Built customer-assistance AI with PyTorch and Transformers, reaching 90\% accuracy in phishing detection and parsing 2K+ resumes per month.
+\end{itemize}
+\vspace{2pt}\role{SIEMENS - Intern}{Apr 2021}
+\begin{itemize}
+    \item Studied PET-CT and MRI imaging workflows and prototyped a CNN classifier on public CT scan data to explore how AI could help flag abnormal scans for faster radiologist review.
+\end{itemize}
+
+\section{SELECTED PROJECTS}
+\begin{itemize}
+\item \textbf{Edge AIoT for Product Inspection:} Built a full-stack inspection system (CNN, Flask, AWS DynamoDB, Raspberry Pi) that identifies defective microchips in real time with 92\% accuracy. \hfill \lnk{https://www.youtube.com/watch?v=mOJEEJ-eYmM}{Demo}
+\item \textbf{Invoice Image to JSON (PaliGemma):} Developed a document-extraction pipeline that converts invoices across 200+ layouts into structured JSON with 88\% accuracy. \hfill \lnk{https://huggingface.co/Arsive/paligemma-img-to-json}{Model}
+\item \textbf{Goodreads Rating Prediction:} Won 1st place in a Kaggle competition with a fine-tuned T5 model and custom preprocessing (0.70 mean F1). \hfill \lnk{https://github.com/Arsive02/Goodreads_Books_Review_Rating_Prediction}{Code}
+\end{itemize}
+
+\section{KEY SKILLS}
+\textbf{AI \& Agents:} Claude Code, multi-agent orchestration, tool calling, RAG, LLM evaluation, NLP, computer vision, multimodal AI\\
+\textbf{Programming \& Data:} Python, SQL, PostgreSQL, JavaScript, React, Java, R, relational data modeling, REST APIs, FastAPI, Streamlit\\
+\textbf{Cloud \& Tools:} AWS (Lambda, DynamoDB, S3, Aurora), Docker, CI/CD, Git, PyTorch, Pandas, Ray, PySpark, Power BI, GCP, Azure
+
+\section{EDUCATION}
+\textbf{Master of Science in Data Science} \hfill Aug 2024 - May 2026\\
+University of Colorado Boulder \hfill GPA: 4.00/4.00\\
+\textbf{Bachelor of Engineering in Electronics and Communication} \hfill Aug 2018 - Jun 2022\\
+Sri Sai Ram Engineering College, Chennai, India \hfill GPA: 3.65/4.00\\
+\textbf{Certifications:} \href{https://www.coursera.org/account/accomplishments/specialization/JFDNHB4YM3AR}{\textcolor{secondary}{NLP Specialization}}, \href{https://www.coursera.org/account/accomplishments/specialization/DEVTH7W95X9T}{\textcolor{secondary}{Deep Learning Specialization}}, \href{https://www.coursera.org/account/accomplishments/verify/Q7G4VB62HQBK}{\textcolor{secondary}{Machine Learning}} (Coursera)
+
+\end{document}

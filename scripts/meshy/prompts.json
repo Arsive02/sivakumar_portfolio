@@ -1,0 +1,45 @@
+{
+  "_note": "Prompts for Meshy text-to-3D. Tuned for the Math Editorial look: matte, sculptural, few colours, no text/logos. Edit freely, then run `npm run meshy:preview -- <name>`.",
+  "astrolabe": {
+    "use": "Experience section (alternative to the procedural Bloch sphere)",
+    "prompt": "an armillary sphere astrolabe, nested thin brass rings around a small polished sphere, engraved degree markings, elegant scientific instrument, studio product shot",
+    "negative_prompt": "text, logo, base plate clutter, low quality, noisy texture",
+    "art_style": "realistic"
+  },
+  "telescope": {
+    "use": "Stellar Mapping case study (replaces the 7.4MB JWST model)",
+    "prompt": "James Webb Space Telescope model, large golden hexagonal segmented primary mirror made of 18 hexagon tiles, tripod secondary mirror struts, five-layer silver diamond-shaped sunshield underneath, spacecraft bus, floating, no ground, detailed scale model",
+    "negative_prompt": "ground telescope, tripod stand, refractor tube, eyepiece, text, logo, low quality",
+    "art_style": "realistic"
+  },
+  "flute": {
+    "use": "Life section, Flute row",
+    "prompt": "Indian bamboo flute bansuri, long natural light-brown bamboo tube with visible nodes, one embouchure hole and a row of seven finger holes, wrapped with dark red silk thread bindings at both ends and the middle, lying horizontally, product shot",
+    "negative_prompt": "metal flute, western concert flute, keys, hands, person, text, plain cylinder, low quality",
+    "art_style": "realistic"
+  },
+  "orrery": {
+    "use": "Library page header",
+    "prompt": "a small antique brass orrery with thin arms holding matte planets, standing on a stack of three closed leather-bound books, editorial still life",
+    "negative_prompt": "text on books, logo, clutter, low quality",
+    "art_style": "realistic"
+  },
+  "knight": {
+    "use": "Life section, Chess tile",
+    "prompt": "a single Staunton chess knight piece, polished dark walnut wood with a felt base, classic horse head carving, studio product shot",
+    "negative_prompt": "board, other pieces, text, hands, low quality",
+    "art_style": "realistic"
+  },
+  "glove": {
+    "use": "Life section, Boxing tile",
+    "prompt": "a single red leather boxing glove with white laces and stitching, side view, studio product shot",
+    "negative_prompt": "pair of gloves, hands, person, text, logo, low quality",
+    "art_style": "realistic"
+  },
+  "torii": {
+    "use": "Life section, Japanese tile",
+    "prompt": "a small vermilion red Japanese torii gate with black top beam (kasagi), standing on a flat grey stone base, miniature model",
+    "negative_prompt": "text, kanji signs, people, trees, landscape, low quality",
+    "art_style": "realistic"
+  }
+}

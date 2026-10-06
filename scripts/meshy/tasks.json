@@ -1,0 +1,35 @@
+{
+  "astrolabe": {
+    "preview": "01a10a8e-4996-735c-9727-59cc99314e9b",
+    "refine": "01a10a99-ea21-7507-8c85-8bfd76a8fd74"
+  },
+  "telescope": {
+    "preview": "01a10a9a-add9-7758-8145-ea4d1c1b5a8f"
+  },
+  "flute": {
+    "preview": "01a10a9a-b69c-7161-a11c-cb29f85ca7d4",
+    "image": "01a10aa2-8042-76d1-b0e0-c7c34b2c923a",
+    "source": "https://upload.wikimedia.org/wikipedia/commons/0/02/Bansuri_bamboo_flute_23inch.jpg"
+  },
+  "orrery": {
+    "preview": "01a10a8e-66c3-730c-ac29-d3e9410cad3d",
+    "refine": "01a10a99-ea6e-76ef-89c1-d437e3c243cd"
+  },
+  "venu": {
+    "image": "01a10aa3-b1e6-7656-a70a-6114eb032fda",
+    "source": "venu-crop.jpg"
+  },
+  "knight": {
+    "preview": "01a10e66-32ba-740e-9500-53f6b32d0323",
+    "image": "01a10ea1-c7e4-7048-808f-c612d21549c4",
+    "source": "knight-crop.jpg"
+  },
+  "glove": {
+    "preview": "01a10e66-3933-7551-b596-6ae104ebca07",
+    "refine": "01a10ea1-52ff-707d-9df9-3039647d81a0"
+  },
+  "torii": {
+    "preview": "01a10e66-409c-70fc-8a95-1a221e313c52",
+    "refine": "01a10ea1-533a-7330-a29a-9a85532ca5a2"
+  }
+}
